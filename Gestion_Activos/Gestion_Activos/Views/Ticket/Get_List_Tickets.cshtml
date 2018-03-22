@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Tickets";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+@model IEnumerable<Gestion_Activos.Models.Ticket>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-search"></i>
+                Tickets
+            </div>
+            <div class="box-body" style="min-height:600px;">
+                <div class="col-xs-12 col-lg-3">
+                    <div class="box-header with-border">
+                        <i class="fa fa-search"></i>
+                        <h3 class="box-title">Búsqueda de Ticket</h3>
+                    </div>
+                    <div class="box-body" style="background-color:#F5F5F5">
+                        <div class="form-group">
+                            <label for="parametro">Búsqueda:</label>
+                            <input type="text" class="form-control" id="parametro" placeholder="Buscar">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="no-margin">Tipo de busqueda:</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="0" checked="">
+                                    # Ticket
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="1">
+                                    # Afiliado
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="2">
+                                    Contacto
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="3">
+                                    Nombre negocio
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="no-margin">Tipo del tiquete:</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus" value="T" checked="">
+                                    Todos
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus" value="I">
+                                    Instalación
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus" value="V">
+                                    Visita Técnica
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus" value="R">
+                                    Retiro
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer" style="background-color:#F5F5F5">
+                        <button class="btn btn-success  pull-right" id="btn_afiliado">Buscar</button>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-9">
+                    <div class="box-body">
+                        <table id="table1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="text-light-blue">
+                                    <th>
+                                       # Ticket
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.type)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.local_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.contact)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.membership_number)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.date)
+                                    </th>
+                                    <th>
+                                        Bitácora
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.type)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.local_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.contact)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.membership_number)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.date)
+                                            @* convertir a date *@
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-block btn-info btn-sm" href='@Url.Action("Get_Log_Ticket", "Ticket", new { id_ticket = item.id })' target="_blank">
+                                                Ver
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="box" id="loading_table" hidden>
+                            <div class="box-header">
+                                <h3 id="msj-ajax">Cargando datos..</h3>
+                            </div>
+                            <div class="overlay">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+<script src="@Url.Content("~/Scripts/Views/Ticket/Get_List_Tickets.js")" type="text/javascript"></script>

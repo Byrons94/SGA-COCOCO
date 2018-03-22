@@ -1,0 +1,1070 @@
+﻿@model Gestion_Activos.Models.Ticket
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Get_Log_Ticket</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/Template/Style")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundle/scripts/plugins")    
+    @Styles.Render("~/bundle/scripts/checkboxcss")
+    @Scripts.Render("~/bundle/scripts/knopjs")
+    @Scripts.Render("~/bundle/scripts/file-upload")
+
+    
+    <link rel="shortcut icon" href="~/Content/dist/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+       .bar {
+            height: 18px;
+            background: green;
+        }
+    </style>
+</head>
+<body style="background-color:#ededed">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-lg-12">
+                <div class="box no-header">
+                    <div class="box-body" id="content" style="height:1250px;">
+                        <div class="col-xs-12 col-lg-12">
+                            <div class="box-header with-border no-margin no-padding">
+                                <div class="row header-print">
+                                    <div class="col-lg-3 col-xs-4">
+                                        <div class="form-group no-margin no-padding">
+                                            <img src="~/Content/dist/img/fpc.png" WIDTH=60 HEIGHT=25>
+                                            <img src="~/Content/dist/img/iso-9001.png" WIDTH=70 HEIGHT=60>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xs-3">
+                                        <center><h3 class="text-bold">Bitácora de @Model.type</h3></center>
+                                    </div>
+                                    <div class="col-lg-3 col-xs-4">
+                                        <div class="form-group">
+                                            <h4>
+                                                <i class="fa fa-ticket"></i>
+                                                Boleta <strong>#@Model.id</strong>
+                                            </h4>
+                                            <input type="hidden" id="id_bitacora" value="@Model.id">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                @if (Model == null && Model.log == null)
+                                {
+                                    <div class="callout callout-warning">
+                                        <h4>Alerta!</h4>
+                                        <p>Este tiquete no tiene una bitácora</p>
+                                    </div>
+                                }
+                                else if (Model.client == null)
+                                {
+                                    <div class="callout callout-warning">
+                                        <h4>Alerta!</h4>
+                                        <p>El afiliado de este tiquete no existe, informar a soporte</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input type="hidden" value="@Model.type" id="document_type">
+                                    <input type="hidden" value="@Model.membership_number" id="membership_number">
+                                    <input type="hidden" value="@Model.client.local_name" id="local_name">
+
+
+                                    <div class="row invoice-info">
+                                        <div class="col-sm-4 invoice-col">
+                                            <div class="form-group">
+                                                <div>
+                                                    <b>@Html.DisplayNameFor(model => model.membership_number):</b>
+                                                    #@Html.DisplayFor(model => model.membership_number)
+                                                    <br>
+
+                                                    <b>@Html.DisplayNameFor(model => model.client.local_name):</b>
+                                                    @Html.DisplayFor(model => model.client.local_name)
+                                                    <br>
+
+                                                    <b>@Html.DisplayNameFor(model => model.client.contact):</b>
+                                                    @Html.DisplayFor(model => model.client.contact)
+                                                    <br>
+
+                                                    <b>@Html.DisplayNameFor(model => model.client.phone):</b>
+                                                    @Html.DisplayFor(model => model.client.phone)
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div> <!-- /.col -->
+
+                                        <div class="col-sm-4 invoice-col">
+                                            <div>
+                                                <b>@Html.DisplayNameFor(model => model.client.province):</b>
+                                                @Html.DisplayFor(model => model.client.province)
+                                                <br>
+
+                                                <b>@Html.DisplayNameFor(model => model.client.canton):</b>
+                                                @Html.DisplayFor(model => model.client.canton)
+                                                <br>
+
+                                                <b>@Html.DisplayNameFor(model => model.client.district):</b>
+                                                @Html.DisplayFor(model => model.client.district)
+                                                <br>
+
+                                                <b>@Html.DisplayNameFor(model => model.client.address):</b>
+                                                @Html.DisplayFor(model => model.client.address)
+                                                <br>
+                                            </div>
+                                        </div> <!-- /.col -->
+
+                                        <div class="col-sm-4 invoice-col">
+                                            <div>
+                                                <b>@Html.DisplayNameFor(model => model.technical):</b>
+                                                @Html.DisplayFor(model => model.technical)
+                                                <br>
+
+                                                <b>@Html.DisplayNameFor(model => model.type):</b>
+                                                @Html.DisplayFor(model => model.type)
+                                                <br>
+
+                                                <b>@Html.DisplayNameFor(model => model.log.date):</b>
+                                                @Html.DisplayFor(model => model.log.date)
+                                                <br> 
+
+                                                <b>Ticket Cred:</b>
+                                                @Html.DisplayFor(model => model.ticket_cred)
+                                                <br> 
+
+                                            </div>
+                                        </div> <!-- /.col -->
+
+                                    </div>
+                                    <hr>
+                                    if (Model.type == "VISITA")
+                                    {
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <h4 class="text-bold">Avería reportada:</h4>
+                                                <div class="form-group">
+                                                    @if (Model.log != null) {
+                                                        <textarea class="form-control" id="averia" name="averia" placeholder="Descripción de la falla reportada por el cliente." style="resize:none" rows="3" readonly>@Model.log.damage.Trim()</textarea>
+                                                    }
+                                                    else
+                                                    {
+                                                        <textarea class="form-control" id="averia" name="averia" placeholder="Descripción de la falla reportada por el cliente." style="resize:none" rows="3" readonly>No hay información</textarea>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h4 class="text-bold">Diagnóstico:</h4>
+                                                <div class="form-group">
+                                                    @if (Model.log != null)
+                                                    {
+                                                        <textarea class="form-control" id="diagnostico" name="diagnostico" placeholder="Descripción del diagnostico, de acuerdo a la revisión." style="resize:none" rows="3" readonly>@Model.log.diagnostic.Trim()</textarea>
+                                                    }
+                                                    else
+                                                    {
+                                                        <textarea class="form-control" id="diagnostico" name="diagnostico" placeholder="Descripción del diagnostico, de acuerdo a la revisión." style="resize:none" rows="3" readonly>No hay información</textarea>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h4 class="text-bold">Solución:</h4>
+                                                <div class="form-group">
+                                                     @if (Model.log != null)
+                                                     {
+                                                        <textarea class="form-control" id="solucion" name="solucion" placeholder="Descripción de la solución brindada al cliente." style="resize:none" rows="3" readonly>@Model.log.solution.Trim()</textarea>
+                                                     }
+                                                     else
+                                                     {
+                                                        <textarea class="form-control" id="solucion" name="solucion" placeholder="Descripción de la solución brindada al cliente." style="resize:none" rows="3" readonly>No hay informació</textarea>
+                                                     }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12">
+                                                <div class="no-padding">
+                                                    <table class="table table-striped no-padding">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Exposición del equipo</th>
+                                                                <th>Nula</th>
+                                                                <th>Media</th>
+                                                                <th>Alta</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Humedad</td>
+                                                                <td><label><input type="radio" name="radio_humedad" class="flat-red" value="1"></label></td>
+                                                                <td><label><input type="radio" name="radio_humedad" class="flat-red" value="2"></label></td>
+                                                                <td><label><input type="radio" name="radio_humedad" class="flat-red" value="3"></label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Grasa</td>
+                                                                <td><label><input type="radio" name="radio_grasa" class="flat-red" value="1"></label></td>
+                                                                <td><label><input type="radio" name="radio_grasa" class="flat-red" value="2"></label></td>
+                                                                <td><label><input type="radio" name="radio_grasa" class="flat-red" value="3"></label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sobre voltaje</td>
+                                                                <td><label><input type="radio" name="radio_voltaje" class="flat-red" value="1"></label></td>
+                                                                <td><label><input type="radio" name="radio_voltaje" class="flat-red" value="2"></label></td>
+                                                                <td><label><input type="radio" name="radio_voltaje" class="flat-red" value="3"></label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Plagas</td>
+                                                                <td><label><input type="radio" name="radio_plaga" class="flat-red" value="1"></label></td>
+                                                                <td><label><input type="radio" name="radio_plaga" class="flat-red" value="2"></label></td>
+                                                                <td><label><input type="radio" name="radio_plaga" class="flat-red" value="3"></label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Polvo</td>
+                                                                <td><label><input type="radio" name="radio_polvo" class="flat-red" value="1"></label></td>
+                                                                <td><label><input type="radio" name="radio_polvo" class="flat-red" value="2"></label></td>
+                                                                <td><label><input type="radio" name="radio_polvo" class="flat-red" value="3"></label></td>
+                                                            </tr>
+                                                            @if (@Model.log != null)
+                                                            {
+                                                                if (@Model.log.equipment_exposition_2 != "")
+                                                                {
+                                                                    <tr>
+                                                                        <td>@Model.log.equipment_exposition_2</td>
+                                                                        <td><label><input type="radio" name="radio_otra" class="flat-red" value="1"></label></td>
+                                                                        <td><label><input type="radio" name="radio_otra" class="flat-red" value="2"></label></td>
+                                                                        <td><label><input type="radio" name="radio_otra" class="flat-red" value="3"></label></td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 no-padding">
+                                            <div class="col-xs-6">
+                                                <h4 class="text-bold">Mantenimiento:</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="1">
+                                                            Limpieza de puertos y conexiones
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="2">
+                                                            Limpieza interna del CPU
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="3">
+                                                            Limpieza interna de la impresora
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="4">
+                                                            Limpieza de periféricos
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="5">
+                                                            Estado del cableado
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_mantenimiento" class="flat-red" value="6">
+                                                            Pruebas de encendido y apagado
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-6 border-left">
+                                                <h4 class="text-bold">Pruebas:</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red" value="1">
+                                                            Se verifica Backup de UPS
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red" value="2">
+                                                            Se realiza test de HDD
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red " value="3">
+                                                            Se realizan pruebas de impresión
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red " value="4">
+                                                            Se prueban lectores
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red " value="5">
+                                                            Se verifican Drivers
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_pruebas" class="flat-red " value="6">
+                                                            Limpieza de Sistema Operativo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        if (Model.log != null)
+                                        {
+                                            if (Model.log.extra_3 != "" && Model.log.extra_3 != null)
+                                            {
+                                                <div class="col-xs-6">
+                                                    <div class="form-group">
+                                                        <h4 class="text-bold">Equipo faltante:</h4>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" style="resize:none" rows="3" readonly>@Model.log.extra_3.Trim()</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            if (Model.log.extra_2 == "1")
+                                            {
+                                                <div class="col-xs-6">
+                                                    <div class="form-group no-margin">
+                                                        <br><br>
+                                                        <h4><b>Extra: </b> Se ha realizado un mantenimiento general del equipo.</h4>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                    else if (Model.type == "INSTALACION")
+                                    {
+                                        <div class="col-lg-12">
+                                            <div class="col-xs-4">
+                                                <h4>Tipo conexión</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_conecion" class="flat-red" value="1">
+                                                            Internet
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_conecion" class="flat-red" value="2">
+                                                            Inalámbrica
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_conecion" class="flat-red" value="3">
+                                                            Modem
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_conecion" class="flat-red" value="4">
+                                                            Cable
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_conecion" class="flat-red" value="5">
+                                                            Datacard
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-4 border-left">
+                                                <h4>Detalle instalación</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_detalle_install" class="flat-red" value="1">
+                                                            Lugar instalación
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_detalle_install" class="flat-red" value="2">
+                                                            Espacio caja dinero
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_detalle_install" class="flat-red" value="3">
+                                                            Espacio impresora
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_detalle_install" class="flat-red" value="4">
+                                                            Espacio CPU
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_detalle_install" class="flat-red " value="5">
+                                                            Espacio Monitor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-4 border-left">
+                                                <h4>Exposición equipo</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red" value="0" readonly>
+                                                            Humedad
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red" value="1" readonly>
+                                                            Grasa
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="2" readonly>
+                                                            Sobre Voltaje
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="3" readonly>
+                                                            Plagas
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="4" readonly>
+                                                            Polvo
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="5" readonly>
+                                                            Oxidación
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="6" readonly>
+                                                            Desgaste
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5 col-xs-12">
+                                                <h4>Pruebas realizadas</h4>
+                                                <div class="form-group no-margin">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red" value="1">
+                                                            Se realizan pruebas de lectura/escritura
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red" value="2">
+                                                            Pruebas de encendido y apagado
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red " value="3">
+                                                            Pruebas de impresión
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red " value="4">
+                                                            Se indica como agregar el rollo de papel
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red " value="5">
+                                                            Se ingresa al acceso directo del punto de venta
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="chk_otros" class="flat-red " value="6">
+                                                            Se hacen recomendaciones
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-lg-7 border-left">
+                                                <div class="box-header with-border">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                    <h3 class="box-title">Observaciones:</h3>
+                                                </div>
+                                                <div class="box-body with-border" style="background-color:#F5F5F5">
+                                                    <blockquote>
+                                                        @Html.DisplayFor(model => Model.log.extra_1)
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.type == "RETIRO")
+                                    {
+                                        <div class="row col-xs-12">
+                                            <div class="col-xs-6 ">
+                                                <div class="box-header with-border">
+                                                    <i class="fa  fa-tags"></i>
+                                                    <h3 class="box-title">Exposición equipo:</h3>
+                                                </div>
+                                                <div class="box-body with-border">
+                                                    <div class="form-group no-margin">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red" value="0" readonly>
+                                                                Humedad
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red" value="1" readonly>
+                                                                Grasa
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="2" readonly>
+                                                                Sobre Voltaje
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="3" readonly>
+                                                                Plagas
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="4" readonly>
+                                                                Polvo
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="5" readonly>
+                                                                Oxidación
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="chk_exposicion_equipo" class="flat-red " value="6" readonly>
+                                                                Desgaste
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <div class="box-header with-border">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                    <h3 class="box-title">Observaciones:</h3>
+                                                </div>
+                                                <div class="box-body with-border" style="background-color:#F5F5F5; height:150px;">
+                                                    <blockquote>
+                                                        @Html.DisplayFor(model => Model.log.extra_1)
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        if (Model.log != null)
+                                        { 
+                                            if (Model.log.extra_3 != "" && Model.log.extra_3 != null)
+                                            {
+                                                <div class="col-xs-6">
+                                                    <div class="form-group">
+                                                        <h4 class="text-bold">Equipo faltante:</h4>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" style="resize:none" rows="3" readonly>@Model.log.extra_3.Trim()</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    }
+
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <hr>
+                                            <div class="col-xs-6 col-xs-offset-0 col-lg-5 col-lg-offset-1">
+                                                <div class="box-body no-margin no-padding">
+                                                    <h5><b>Afiliado : </b>  #@Model.membership_number</h5>
+                                                    <h5><b>Contacto: </b>  @Model.client.contact</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-xs-offset-0 col-lg-5 col-lg-offset-1">
+                                                <div class="box-body no-margin no-padding">
+                                                    <h5><b>Técnico: </b> @Model.technical</h5>
+                                                    <h5><b>Coordinador: </b>  @Model.user</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <hr>
+                                            <center>En este documento el técnico realiza una valoración visual de los componentes. En el caso de ser retirados estos serán sometidos a una revisión física y técnica profunda, en la cuál se determinara el estado final del producto. El resultado final queda sujeto a la aprobación físico-técnica en nuestros laboratorios.</center>
+                                            <center><b>Para soporte técnico, Teléfono: (506) 2202-8999 / Email: soportePOS@grupo3c.com </b></center>
+                                        </div>
+                                    </div>
+                                    <div class="row no-print">
+                                        <div class="col-xs-12">
+                                            <hr>
+                                            <br>
+                                            <button class="btn btn-default" id="print"><i class="fa fa-print"></i> Imprimir</button>
+                                            <button class="btn btn-primary" id="avance_tick" data-toggle="modal" data-target="#modal_historial">
+                                                <i class="fa fa-plus-circle"></i> Ver avances del ticket
+                                            </button>
+                                            @if (FrontUser.Have_Permission(Permissions_Enum.Manejar_Evidencias))
+                                            {
+                                            @*modal to load and save evidences*@
+                                                <button type="button" class="btn btn-file-upload" data-toggle="modal" , data-target="#modal_file_upload">
+                                                    <i class="fa fa-cloud-upload"> Evidencias</i>
+                                                </button>
+
+                                                <div id="div_files_modal">
+                                                </div>
+                                                @*end to load and save evidences*@
+
+                                            }
+                                          
+                                            @if (Model.log != null)
+                                            {
+                                                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_email">
+                                                    <i class="fa fa-envelope"></i> Enviar por E-mail
+                                                </button>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@*productos  *@
+    @if (Model.client != null) { 
+        if (Model.client.inventary != null)
+        {
+            if (Model.client.inventary.Count() > 0)
+            {
+            <div class="container">
+                <div class="row" >
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="box">
+                            <div class="col-xs-12 col-lg-12">
+                                <div class="box-header with-border no-margin no-padding">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-4">
+                                            <div class="form-group no-margin no-padding">
+                                                <img src="~/Content/dist/img/fpc.png" WIDTH=60 HEIGHT=25>
+                                                <img src="~/Content/dist/img/iso-9001.png" WIDTH=70 HEIGHT=60>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-xs-3">
+                                            <center><h3 class="text-bold">Bitácora de @Model.type</h3></center>
+                                        </div>
+                                        <div class="col-lg-3 col-xs-4">
+                                            <div class="form-group">
+                                                <h4>
+                                                    <i class="fa fa-ticket"></i>
+                                                    Boleta <strong>#@Model.id</strong>
+                                                </h4>
+                                                <input type="hidden" class="id_bitacora" id="@Model.id">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body" id="content" style="min-height:800px;">
+                                @* body *@
+                                <div class="row">
+                                    <center><h4>Movimientos realizados</h4></center>
+                                    <div class="col-lg-9 col-lg-offset-2 col-xs-12 col-xs-offset-0 ">
+                                        <div class="box-body">
+                                            <br>
+                                            <b>Productos:</b>
+                                            @if (Model.type == "RETIRO" || Model.type == "INSTALACION")
+                                            {
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="text-blue">
+                                                        <th>Descripción</th>
+                                                        <th>Serie</th>
+                                                        <th>Estado</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var product in Model.client.inventary)
+                                                    {
+                                                        <tr>
+                                                            <td>@Html.DisplayFor(model => product.description)</td>
+                                                            <td>@Html.DisplayFor(model => product.serial_number)</td>
+                                                            <td>@Html.DisplayFor(model => product.state)</td>
+                                                            <td>@Html.DisplayFor(model => product.action)</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                            }
+                                            else if (Model.type == "VISITA")
+                                            {
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr class="text-blue">
+                                                            <th>Descripción</th>
+                                                            <th>Serie retirada</th>
+                                                            <th>Estado</th>
+                                                            <th>Serie instalada</th>
+                                                            <th>Estado</th>
+                                                            <th>Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var product in Model.client.inventary)
+                                                        {
+                                                            <tr>
+                                                                <td>@Html.DisplayFor(model => product.description)</td>
+                                                                <td>@Html.DisplayFor(model => product.serial_2)</td>
+                                                                <td>@Html.DisplayFor(model => product.state)</td>
+                                                                <td>@Html.DisplayFor(model => product.serial_number)</td>
+                                                                <td>Optimo</td>
+                                                                <td>Cambio</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    }
+
+    @*Modals*@
+    <div class="modal fade" id="modal_email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <i class="fa fa-send"></i>
+                        Enviar boleta por E-mail
+                    </h4>
+                </div>
+                <div class="modal-body" id="body1">
+                    <div class="form-group">
+                        <label>Email del afiliado:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" placeholder="example@email.com" id="input_email" name="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <center><h3>¿Está seguro que desea enviar el email?</h3></center>
+                        <div class="col-xs-9 col-xs-offset-2 row">
+                            <div class="col-xs-5">
+                                <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                            </div>
+                            <div class="col-xs-5">
+                                <button type="button" class="btn btn-block btn-success btn-lg" id="btn-confirmacion"><i class="fa fa-check"></i>Aceptar </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="body2" hidden>
+                    <div class="row">
+                        <center><h3 id="mjs_send">Enviando E-mail un momento por favor...</h3></center>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_historial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <i class="fa fa-plus-circle"></i>
+                        Avances del ticket
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4><span class="text-red text-bold">Avances:</span></h4>
+                            <div class="table-responsive no-padding">
+                                <table class="table table-hover" id="table2">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Responsable</th>
+                                            <th>Fecha</th>
+                                            <th>Detalle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.advances != null)
+                                        {
+                                            foreach (var advance in Model.advances)
+                                            {
+                                                <tr>
+                                                    <td>@Html.DisplayFor(model => advance.id)</td>
+                                                    <td>@Html.DisplayFor(model => advance.user)</td>
+                                                    <td>@Html.DisplayFor(model => advance.date)</td>
+                                                    <td>@Html.DisplayFor(model => advance.detail)</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4">No existen avances en este ticket</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        var type = Model.type.ToString();
+        bool existe          = (Model.log == null) ? false : true;
+        string conexion      = "";
+        string detalle       = "";
+        string exposicion    = "";
+        string pruebas       = "";
+        string mantenimiento = "";
+        if (existe)
+        {
+            if (type == "INSTALACION")
+            {
+                conexion    = Model.log.connetion;
+                detalle     = Model.log.instalation_detaill;
+                exposicion  = Model.log.equipment_exposition;
+                pruebas     = Model.log.others;
+            }
+            else if (type == "VISITA")
+            {
+                mantenimiento   = Model.log.mainmaintenance;
+                exposicion      = Model.log.equipment_exposition;
+                pruebas         = Model.log.tests;
+            }
+            else if (type == "RETIRO")
+            {
+                exposicion = Model.log.equipment_exposition;
+            }
+        }
+    }
+    @Scripts.Render("~/bundle/scripts/checkboxjs")
+    <script  type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=checkbox]').click(function () {
+                return false;
+            });
+
+            $('input[type=radio]').click(function () {
+                return false;
+            });
+
+            var tipo = '@type';
+            if (tipo == "INSTALACION") {
+                f_instalaciones();
+            }
+            else if (tipo == "VISITA") {
+                f_visitas();
+            }
+            else if (tipo == "RETIRO") {
+                f_retiros();
+            }
+        });
+
+        function f_instalaciones() {
+            var conexion = '@conexion'.split(',');
+            var detalle = '@detalle'.split(',');
+            var exposicion = '@exposicion'.split(',');
+            var pruebas = '@pruebas'.split(',');
+            $.each(conexion, function (number, value) {
+                checkbox("chk_conecion", value);
+            });
+            $.each(detalle, function (number, value) {
+                checkbox("chk_detalle_install", value);
+            });
+            $.each(exposicion, function (number, value) {
+                checkbox("chk_exposicion_equip", value);
+            });
+            $.each(pruebas, function (number, value) {
+                checkbox("chk_otros", value);
+            });
+            console.log(conexion);
+        }
+
+        function f_visitas() {
+            var radios = ["radio_humedad", "radio_grasa", "radio_voltaje", "radio_plaga", "radio_polvo", "radio_otra"]
+            var mantenimiento = '@mantenimiento'.split(',');
+            var exposicion = '@exposicion'.split(',');
+            var pruebas = '@pruebas'.split(',');
+
+            $.each(exposicion, function (number, value) {
+                radio_buttons(radios[number], value - 1);
+            });
+            $.each(mantenimiento, function (number, value) {
+                checkbox("chk_mantenimiento", value);
+            });
+            $.each(pruebas, function (number, value) {
+                checkbox("chk_pruebas", value);
+            });
+        }
+
+        function f_retiros() {
+            var exposicion = '@exposicion'.split(',');
+            console.log(exposicion);
+            $.each(exposicion, function (number, value) {
+                checkbox("chk_exposicion_equipo", value);
+            });
+        }
+
+        function radio_buttons(name, value) {
+            var radio1 = document.getElementsByName(name);
+            for (i = 0; i < radio1.length; i++) {
+                if (radio1[i].type == 'radio' && i == value) {
+                    radio1[i].checked = true;
+                }
+            }
+        }
+
+        function checkbox(name, value) {
+            var checkboxs = $('input[name=' + name + ']');
+            $.each(checkboxs, function (number, checkbox) {
+                if ($(this).val() == value) {
+                    $(checkbox).prop("checked", true);
+                }
+            });
+        }
+
+
+        $("#print").click(function () {
+            window.print();
+        });
+
+        $("#btn-confirmacion").click(function () {
+            $('#modal_email').modal({ backdrop: 'static', keyboard: false })
+            $("#body1").hide();
+            $("#body2").show();
+            var email = $("#input_email").val();
+            var info = $("#membership_number").val() + " " + $("#local_name").val();
+
+            if (email.trim() != "" && isEmail(email)) {
+                $("#input_email").removeAttr('style');
+                var bitacora = $("#id_bitacora").val();
+                ajax_email(email, bitacora, info);
+            }
+            else {
+                $("#input_email").css('border-color', '#dd4b39');
+                $("#input_email").attr("placeholder", "Debe agregar una correo válido");
+            }
+            $("#mjs_send").text("Enviando E-mail un momento por favor...");
+        });
+
+        function ajax_email(email, n_doc, info) { //aqui se cambia la serie
+            $.ajax({
+                url: "/Ticket/Send_Email",
+                type: "POST",
+                datatype: "JSON",
+                traditional: true,
+                data:
+                    {
+                        n_doc: n_doc,
+                        email: email,
+                        other: info
+                    },
+                success: function (result) {
+                    $("#mjs_send").text("Email enviado con éxito");
+                    setTimeout(function () { $("#modal_email").modal("hide") }, 4000);
+                    setTimeout(function () {
+                        $("#body2").hide();
+                        $("#body1").show();
+                    }, 6000);
+                },
+                error: function (XMLHttpRequest) {
+                    $("#mjs_send").text("No se ha podido enviar el E-mail, intente de nuevo");
+                    setTimeout(function () {
+                        $("#body2").hide();
+                        $("#body1").show();
+                    }, 3000);
+                }
+            });
+            return false;
+        }
+
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
+    </script>
+
+    <script src="@Url.Content("~/Scripts/Views/General/file-uploader.js")" type="text/javascript"></script>
+</body>
+</html>

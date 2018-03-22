@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Gestion_Activos.Models.Class.Rol>
+
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-pencil-square-o"></i>
+                Roles y permisos
+            </div>
+
+            <div class="col-lg-12">
+                <h3 class="box-title"></h3>
+                @if (FrontUser.Have_Permission(Permissions_Enum.Registrar_Rol)) { 
+                <div class="col-xs-3">
+                    <button type="button" class="btn btn-block btn-success btn-lg" onclick="location.href='@Url.Action("Create_Rol")'">
+                        Crear Nuevo Rol
+                    </button>
+                </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="table1" class="table table-bordered table-hover" style="width:50%; margin:0 auto;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.permanet)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        { 
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.permanet)
+                            </td>
+                            <td>
+                                <div class="form-group col-xs-12">
+                                    @if (FrontUser.Have_Permission(Permissions_Enum.Editar_Rol)) { 
+                                    <div class="pull-left col-xs-6">
+                                        <button type="button" class="btn btn-block btn-info btn-sm" name="item.id" onclick="location.href='@Url.Action("Edit_Rol", new { id_Rol = item.id })'">
+                                            Ver / Editar
+                                        </button>
+                                    </div>
+                                    }
+                                     @if (FrontUser.Have_Permission(Permissions_Enum.Eliminar_Rol))
+                                     {
+                                        if (item.permanet != true)
+                                        {
+                                        <div class="pull-right col-xs-6">
+                                            <button type="button" class="btn btn-block btn-danger btn-sm" value="@item.id"  data-toggle="modal" data-target="#modal_confirmar_eliminar"  onclick="delete_User(@item.id);">
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="inp_id_rol">
+
+<div class="modal fade" id="modal_confirmar_eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa  fa-info"></i>
+                    Actualizar
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Seguro que desea eliminar el rol?</h3></center>
+                    <br>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="btn_confirmacion_eliminar"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+<script src="@Url.Content("~/Scripts/Views/Rol_Permissions/List_Roles.js")" type="text/javascript"></script>

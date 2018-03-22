@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title S.G.A </title>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/Template/Style")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundle/scripts/plugins")
+
+
+    @RenderSection("scripts", required: false)
+    <!--buscar lan forma de renderizar URLS-->
+    <link rel="shortcut icon" href="~/Content/dist/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+
+@{
+    var nameUser    = Session["NAME_USER"]; // might throw a NullReferenceException
+    var nameRol     = Session["ROL_USER"];
+}
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">S.G.A</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>S.G.A </b> Credomatic</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!--AQUI VA EL MENU SUPERIOR DERECHO--->
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left info">
+                        <p>@nameUser</p>
+                        <i class="fa fa-circle text-success"></i> @nameRol
+                    </div>
+                    <br>
+                    <br>
+                </div>
+
+                <!--MENU PRINCIPAL--->
+                <ul class="sidebar-menu">
+                    <li class="header">MENU PRINCIPAL</li>
+                    <li class="_Dashboard_Index">
+                        <a href="@Url.Action("Index", "Dashboard")">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                     @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_tickets)) {
+                        <li class="treeview _Ticket_Index  _Ticket_Index_Attended _Ticket_Details_R  
+                                    _Ticket_Details_V _Ticket_Details _Ticket_Get_List_Tickets _Ticket_Closed">
+                            <a href="#">
+                                <i class="fa fa fa-ticket"></i> <span>Tickets</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu ">
+                                @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_en_ruta))
+                                {
+                                <li class="_Ticket_Index _Ticket_Details_R  _Ticket_Details_V _Ticket_Details">
+                                    <a href="@Url.Action("Index", "Ticket")">
+                                        <i class="fa fa-truck"></i>
+                                        <span>Pendientes</span>
+                                    </a>
+                                </li>
+                                }
+                                
+                                @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_atendidos))
+                                { 
+                                <li class="_Ticket_Index_Attended">
+                                    <a href="@Url.Action("Index_Attended", "Ticket")">
+                                        <i class="fa fa-check-square-o"></i>
+                                        <span>Atendidos</span>
+                                    </a>
+                                </li>
+                                }
+
+                                <li class="_Ticket_Closed">
+                                    <a href="@Url.Action("Closed", "Ticket")">
+                                        <i class="fa fa-dot-circle-o"></i>
+                                        <span>Cerrados</span>
+                                    </a>
+                                </li>
+
+                                @if (Permission_Validate.Have_Permission(Permissions_Enum.Consultar_tickets))
+                                {
+                                <li class="_Ticket_Get_List_Tickets">
+                                    <a href="@Url.Action("Get_List_Tickets", "Ticket")">
+                                        <i class="fa fa-search"></i>
+                                        <span>Consulta</span>
+                                    </a>
+                                </li>
+                                }
+                            </ul>
+                        </li>
+                     }
+                    
+                     @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_afiliado))
+                     { 
+                        <li class="_Client_Index Client/Details_C?">
+                            <a href="@Url.Action("Index", "Client")">
+                                <i class="fa fa-street-view"></i>
+                                <span>Afiliados</span>
+                            </a>
+                        </li>
+                     }
+                     @if (Permission_Validate.Have_Permission(Permissions_Enum.Consultar_Inventario))
+                     {
+                        <li class="_Inventory_Movement_Get_Inventory Inventory_Movement/Get_Inventory">
+                            <a href="@Url.Action("Get_Inventory", "Inventory_Movement")">
+                                <i class="fa fa-desktop"></i>
+                                <span>Inventario</span>
+                            </a>
+                        </li>
+                     }
+                    
+                    @if (Permission_Validate.Have_Permission(Permissions_Enum.Consultar_Series))
+                    {
+                        <li class="treeview _Product_Get_Serial Product/Get_Serial Product/Get_Serial_Changed _Product_Get_Serial_Changed">
+                            <a href="#">
+                                <i class="fa fa-barcode"></i> <span>Series</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="_Product_Get_Serial Product/Get_Serial">
+                                    <a href="@Url.Action("Get_Serial", "Product")">
+                                        <i class="fa fa-barcode"></i>
+                                        <span>Ver series</span>
+                                    </a>
+                                </li>
+                                <li class="_Product_Get_Serial_Changed Product/Get_Serial_Changed">
+                                    <a href="@Url.Action("Get_Serial_Changed", "Product")">
+                                        <i class="fa fa-exchange"></i>
+                                        <span>Cambios</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_Reportes))
+                    {
+                    <li class="treeview _Report_Get_Installations_By_Dates _Report_Get_Report_Maintenance_Clients 
+                               _Report_Get_Events_By_Dates _Get_Products_Movements _Report_Get_Report_Client_Changed _Report_Get_All_Client_Inventary">
+                        <a href="#">
+                            <i class="fa fa-line-chart"></i> <span>Reportes</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="_Report_Get_Installations_By_Dates">
+                                <a href="@Url.Action("Get_Installations_By_Dates", "Report")">
+                                    <i class="fa fa-tasks"></i>
+                                    <span>Instalaciones afiliados</span>
+                                </a>
+                            </li>
+                            <li class="_Report_Get_Report_Maintenance_Clients">
+                                <a href="@Url.Action("Get_Report_Maintenance_Clients", "Report")">
+                                    <i class="fa fa-desktop"></i>
+                                    <span>Mantenimientos afiliados</span>
+                                </a>
+                            </li>
+                            <li class="_Report_Get_Events_By_Dates">
+                                <a href="@Url.Action("Get_Events_By_Dates", "Report")">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <span>Eventos programados</span>
+                                </a>
+                            </li>
+                            <li class="_Get_Products_Movements">
+                                <a href="@Url.Action("Get_Products_Movements", "Report")">
+                                    <i class="fa fa-cubes"></i>
+                                    <span>Movimientos por producto</span>
+                                </a>
+                            </li>
+                            <li class="_Report_Get_Report_Client_Changed">
+                                <a href="@Url.Action("Get_Report_Client_Changed", "Report")">
+                                    <i class="fa fa-street-view"></i>
+                                    <span>Cambios de afiliado</span>
+                                </a>
+                            </li>
+                            <li class="_Report_Get_All_Client_Inventary">
+                                <a href="@Url.Action("Get_All_Client_Inventary", "Report")">
+                                    <i class="fa fa-sitemap"></i>
+                                    <span>Inventario total por afiliado</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    }
+
+                    @*cambiar a ver mantenimiento*@
+                    @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_Mantenimientos))
+                    {
+                        <li class="treeview _User_Index _Rol_Permissions_List_Roles _Configuration_Get_Products_Categories">
+                            <a href="#">
+                                <i class="fa fa-sitemap"></i> <span>Mantenimientos</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_Usuario))
+                                {
+                                    <li class="_User_Index">
+                                        <a href="@Url.Action("Index", "User")">
+                                            <i class="fa fa-users"></i>
+                                            <span>Usuarios</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Permission_Validate.Have_Permission(Permissions_Enum.Visualizar_Rol))
+                                {
+                                    <li class="_Rol_Permissions_List_Roles">
+                                        <a href="@Url.Action("List_Roles", "Rol_Permissions")">
+                                            <i class="fa  fa-pencil-square-o"></i>
+                                            <span>Roles y permisos</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                <li class="_Configuration_Get_Products_Categories">
+                                    <a href="@Url.Action("Get_Products_Categories", "Configuration")">
+                                        <i class="fa fa-gear"></i>
+                                        <span>Categorias de productos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    <li>
+                        <a href="@Url.Action("Log_Out", "Security")">
+                            <i class="fa fa-mail-reply"></i>
+                            <span>Salir</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content TODO VA DENTRO DE AQUI-->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @*<section class="content-header">
+                <h1>
+                    Dashboard
+                    <small>Version 2.0</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>*@
+            <!-- Main content TODO VA DENTRO DE AQUI-->
+            <section class="content">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+   
+    <script>
+        $(document).ready(function () {
+            var pathname = window.location.pathname.replace(/\//g, '_');
+            $("." + pathname).addClass("active");
+            console.log(pathname);
+        });
+    </script>
+    <script>
+        paceOptions = {
+            ajax: false, // disabled
+            document: true, // enabled
+            eventLag: false, // disabled
+            elements: {
+              selectors: ['.my-page']
+            }
+        };
+    </script>
+    @Scripts.Render("~/bundle/scripts/pacejs") @*loading bar*@
+    @Styles.Render("~/bundle/styles/pacetheme")
+</body>
+</html>

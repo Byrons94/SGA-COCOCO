@@ -1,0 +1,196 @@
+﻿@model IEnumerable<Gestion_Activos.Models.Class.Client>
+@* estado tiquete de credomatic *@
+
+@{
+    ViewBag.Title = "Afiliados";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-street-view"></i>
+                Afiliados
+            </div>
+            <div class="box-body" style="min-height:600px;" >
+                <div class="col-xs-12 col-lg-3">
+                    <div class="box-header with-border">
+                        <i class="fa fa-search"></i>
+                        <h3 class="box-title">Búsqueda de afiliado</h3>
+                    </div>
+                    <div class="box-body" style="background-color:#F5F5F5">
+                        <div class="form-group">
+                            <label for="parametro">Búsqueda:</label>
+                            <input type="text" class="form-control" id="parametro" placeholder="Buscar">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="no-margin">Tipo de busqueda:</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda"  value="0" checked="">
+                                     # Afiliado
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda"value="2">
+                                    Nombre negocio
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda"  value="1">
+                                    Nombre encargado
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="no-margin">Estatus afiliado:</label>
+                            <select class="form-control" name="t_estatus">
+                                <option value="T">Todos</option>
+                                <option value="A">Activo</option>
+                                <option value="I">Inactivo</option>
+                                <option value="R">Retiro</option>
+                                <option value="L">Legal</option>
+                                <option value="X">Irrecuperable</option>
+                            </select>
+                        </div>
+
+                        @*<div class="form-group">
+                            <label class="no-margin">Estatus afiliado:</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus"  value="2" checked="">
+                                    Total
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus"  value="1">
+                                    Activo
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_estatus"  value="0">
+                                    Inactivo
+                                </label>
+                            </div>
+                        </div>*@
+
+                    </div>
+                    <div class="box-footer"style="background-color:#F5F5F5">
+                        <button class="btn btn-success  pull-right" id="btn_afiliado">Buscar</button>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-9">
+                    <div class="box-body" >
+                        <table id="table1" class="table table-bordered table-striped" >
+                            <thead>
+                                <tr class="text-light-blue">
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.membership_number)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.local_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.contact)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.phone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.status)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.updated)
+                                    </th>
+                                    <th>
+                                        Detalles
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.membership_number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.local_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.contact)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phone)
+                                    <td>
+                                        <center>
+                                            @switch (item.status_varchar)
+                                            {
+                                                case "A":
+                                                    <span class="label label-success">Activo</span>
+                                                    break;
+                                                case "I":
+                                                    <span class="label label-danger">Inactivo</span>
+                                                    break;
+                                                case "R":
+                                                    <span class="label label-warning">Retiro</span>
+                                                    break;
+                                                case "L":
+                                                    <span class="label label-danger">Legal</span>
+                                                    break;
+                                                case "X":
+                                                    <span class="label label-danger">Irrecuperable</span>
+                                                    break;
+                                            }
+                                            @*@if (item.status)
+                                            {
+                                                <span class="label label-success">Activo</span> 
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">Inactivo</span> 
+                                            }*@
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            @if (item.updated)
+                                            {
+                                                <span class="label label-success">Actualizado</span> }
+                                            else
+                                            {
+                                                <span class="label label-warning">Pendiende</span> }
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-block btn-info btn-sm" onclick="location.href='@Url.Action("Details_C", new { id_client = item.id })'">
+                                            Ver
+                                        </button>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="box" id="loading_table" hidden>
+                            <div class="box-header">
+                               <h3 id="msj-ajax">Cargando datos..</h3>
+                            </div>
+                            <div class="overlay">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+<script src="@Url.Content("~/Scripts/Views/Client/Index.js")" type="text/javascript"></script>

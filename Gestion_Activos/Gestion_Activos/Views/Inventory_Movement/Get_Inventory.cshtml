@@ -1,0 +1,165 @@
+﻿@model IEnumerable<Gestion_Activos.Models.Class.Product_Inventory>
+
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+
+@Scripts.Render("~/bundle/scripts/table_export")
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-desktop"></i>
+                Inventario
+            </div>
+            <div class="box-body" style="min-height:600px;">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" id="btn_exportar"><i class="fa fa-bars"></i>Exportar tabla</button><div class="dropdown-backdrop"></div>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" onclick="$('#table1').tableExport({ type: 'json', escape: 'false' });"><img src="~/Content/dist/img/export_icons/json.png" width="24px"> JSON</a></li>
+                                <li><a href="#" onclick="$('#table1').tableExport({ type: 'xml', escape: 'false' });"> <img src="~/Content/dist/img/export_icons/xml.png" width="24px"> XML</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#table1').tableExport({ type: 'csv', escape: 'false' });"> <img src="~/Content/dist/img/export_icons/csv.png" width="24px"> CSV</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="$('#table1').tableExport({ type: 'excel', escape: 'false' });"> <img src="~/Content/dist/img/export_icons/xls.png" width="24px">XLS</a></li>
+                                <li><a href="#" onclick="$('#table1').tableExport({ type: 'doc', escape: 'false' });"> <img src="~/Content/dist/img/export_icons/word.png" width="24px"> Word</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-3">
+                    <div class="box-header with-border">
+                        <i class="fa fa-search"></i>
+                        <h3 class="box-title">Consultar Inventario</h3>
+                    </div>
+                    <div class="box-body" style="background-color:#F5F5F5">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="1" checked="">
+                                    Inventario Total
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="2">
+                                    Solo Partes
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="3">
+                                    Solo Adicionales
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="4">
+                                    Solo Combos
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="t_busqueda" value="5">
+                                    Otros
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer" style="background-color:#F5F5F5">
+                        <button class="btn btn-success  pull-right" id="btn_buscar">Buscar</button>    
+                    </div>                    
+                </div>
+
+                <div class="col-xs-12 col-lg-9">
+                    @*<div class="box-body" style="max-height:800px; overflow-y:scroll; overflow-x:hidden;" >*@
+                    <div class="box-body">
+                        <table id="table1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.cod_prod)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.description)
+                                    </th>
+                                    <th class="text-light-blue text-center">
+                                        @Html.DisplayNameFor(model => model.balance_start)
+                                    </th>
+                                    <th class="text-light-blue text-center">
+                                        @Html.DisplayNameFor(model => model.bought)
+                                    </th>
+                                    <th class="text-yellow text-center">
+                                        @Html.DisplayNameFor(model => model.installed)
+                                    </th>
+                                    <th class="text-orange text-center">
+                                        @Html.DisplayNameFor(model => model.retired)
+                                    </th>
+                                    <th class="text-light-blue text-center">
+                                        @Html.DisplayNameFor(model => model.reconditioned)
+                                    </th>
+                                    <th class="text-red text-center">
+                                        @Html.DisplayNameFor(model => model.discarded)
+                                    </th>
+                                    <th class="text-green text-center">
+                                        @Html.DisplayNameFor(model => model.balance_end)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => item.cod_prod)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.description)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.balance_start)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.bought)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.installed)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.retired)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.reconditioned)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(model => item.discarded)
+                                        </td>
+                                        <td class="text-center">
+                                            @item.get_total()
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="box" id="loading_table" hidden>
+                            <div class="box-header">
+                                <h3 id="msj-ajax">Cargando datos..</h3>
+                            </div>
+                            <div class="overlay">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                        <b class="text-red">El inventario y sus movimientos son del mes en proceso</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+<script src="@Url.Content("~/Scripts/Views/Inventory_Movement/Get_Inventory.js")" type="text/javascript"></script>

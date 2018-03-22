@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Gestion_Activos.Models.Class.Permission>
+
+@{
+    ViewBag.Title = "Crear Rol";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+@Styles.Render("~/bundle/scripts/checkboxcss")
+@using (Html.BeginForm("Save_Created_Rol", "Rol_Permissions", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "validate_Form(event)" })) 
+{
+    @Html.AntiForgeryToken()    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-save"></i>
+                    Crear rol
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-3 col-xs-12">
+                        <label for="nombreRol">Nombre del Rol:</label>
+                        <input type="text" class="form-control" id="name_Rol" name="name_Rol" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-2 col-lg-offset-10 col-xs-12 col-xs-offset-0">
+                            <input type="submit" id="click_post" class="btn btn-block btn-success btn-lg" value="Crear" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <center><h4>Seleccione los permisos del nuevo rol.</h4></center>
+                    @foreach (var categorie in Categories_List.permisions_categories)
+                    {
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+                           <h3>@categorie.Value:</h3>
+                            @foreach (var item in Model)
+                            {
+                                if (item.Category == categorie.Key)
+                                {
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" class="flat-red" value="@item.ID" name="permisos">
+                                            @item.Description
+                                        </label>
+                                    </div>
+                                </div>
+                                }
+                            }
+                        </div>
+                        <hr class="col-lg-8 col-lg-offset-2 col-xs-12">
+                    </div>
+                    }
+                </div>
+
+                <div class="box-footer">
+                    <div class="form-group">
+                        <div class="pull-left col-xs-4 col-lg-1 ">
+                            <button type="button" class="btn btn-block btn-info btn-sm" onclick="location.href='@Url.Action("List_Roles")'">
+                                Regresar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+}
+
+@Scripts.Render("~/bundle/scripts/checkboxjs")
+<script src="@Url.Content("~/Scripts/Views/Rol_Permissions/Create_Rol.js")" type="text/javascript"></script>

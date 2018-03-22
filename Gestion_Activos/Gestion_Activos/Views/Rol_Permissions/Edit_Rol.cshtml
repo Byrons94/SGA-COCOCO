@@ -1,0 +1,101 @@
+﻿@model Gestion_Activos.Models.Class.Rol
+
+@{
+    ViewBag.Title = "Editar Rol";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+
+<input type="text" id="id_Rol"   value="@Model.id"   hidden="hidden"/>
+<input type="text" id="edit" value="@Model.permanet" hidden="hidden" />
+<form  name="formEdit" id="formEdit" method="post"></form>
+
+@Styles.Render("~/bundle/scripts/checkboxcss")
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary"> 
+            <div class="box-header with-border">
+                <i class="fa fa-save"></i>
+                Editar Rol
+            </div> 
+            <div class="col-lg-12">
+                <div class="form-group col-lg-3 col-xs-12">
+                    <label for="nombreRol">Nombre del Rol:</label>
+                    <input type="text" class="form-control"  id="name_Rol" value="@Model.name" readonly="@Model.permanet">
+                </div>
+                <div class="form-group">
+                    @if (!Model.permanet){
+                    <div class="col-lg-2 col-lg-offset-10 col-xs-12 col-xs-offset-0">
+                        <input type="submit" id="click_post" class="btn btn-block btn-success btn-lg" value="Actualizar" />
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="box-body">  
+            @foreach (var categorie in Categories_List.permisions_categories)
+            {
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+                    <h3>@categorie.Value:</h3>
+                    @foreach (var item in Model.list_permissions)
+                    { 
+                        if (item.Category == categorie.Key)
+                        {
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label>
+                                    @if (@item.Active)
+                                    {
+                                        <input type="checkbox" class="flat-red" value="@item.ID" name ="" checked="checked">
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" class="flat-red" value="@item.ID" >
+                                    }
+                                    @item.Description
+                                </label>
+                            </div>
+                        </div>
+                        }
+                    }
+                </div>
+                <hr class="col-lg-8 col-lg-offset-2 col-xs-12">
+            </div>
+            }
+            </div>
+            <div class="box-footer">
+                <div class="form-group">
+                    <div class="pull-left col-xs-4 col-lg-1 ">
+                        <button type="button" class="btn btn-block btn-info btn-sm" onclick="location.href='@Url.Action("List_Roles")'">
+                            Regresar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_editar_rol" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa  fa-info"></i>
+                    Actualizando...
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3 id="mjs">Se estan guardadndo los cambios, un momento por favor.</h3></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/checkboxjs")
+<script src="@Url.Content("~/Scripts/Views/Rol_Permissions/Edit_Rol.js")" type="text/javascript"></script>

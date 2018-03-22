@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Inicio de sesión</title>
+    <link rel="shortcut icon" href="~/Content/dist/img/favicon.ico">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/Template/Style")
+    @Styles.Render("~/bundle/scripts/checkboxcss")
+    <style>
+        body {
+                background: url('https://wallpaperscraft.com/image/color_background_surface_solid_18481_1920x1080.jpg') no-repeat fixed center center;
+                background-size: cover;
+            }
+    </style>
+</head>
+<body>
+    <div class="header" style="background-color:white; border-radius: 0px 0px 5px 5px; opacity:0.8;">
+        <img class="img-responsive" src="~/Content/dist/img/logo_cred.png" width="650" height="60"/>
+    </div>
+    <div>
+        <div class="login-box" style="border:1px solid #95a5a6; border-radius: 5px; background-color:white;" >
+            <div class="col-sm-12" >
+                <br>
+                <center><h3 style="color:#7C6E63; font-weight:bold;">Sistema Gestión de Activos</h3></center>
+                <hr>
+            </div>
+            <br>
+            <!-- /.login-logo -->
+            @using (Html.BeginForm("Login", "Security", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="login-box-body">
+                    <br>
+                    <div class="form-group has-feedback">
+                        <input type="email" class="form-control" placeholder="Email" name="nombre" required>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+                    </div>
+
+                    <center>
+                        <h3 class="text-red">
+                            @ViewBag.Error
+                        </h3>
+                    </center>
+
+                    <p>Si tiene problemas para iniciar sesión, debe comunicarlo a soporte.</p>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-info btn-block btn-lg">Iniciar sesión</button>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-red">
+                    @*@ViewBag.Exception*@
+                </h3>
+            }
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundle/scripts/plugins")
+    @Scripts.Render("~/bundle/scripts/checkboxjs")
+
+    <script>
+        //agregar funcionalidad al presinar entre
+        $('input[type=text]').on('keydown', function (e) {
+            if (e.which == 13) {
+                if (validar_busqueda()) {
+                    $("#table1").find('tbody').hide('fast');
+                    $("#loading_table").show('fast');
+                    consulta_series();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

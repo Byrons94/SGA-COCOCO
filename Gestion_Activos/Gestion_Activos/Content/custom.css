@@ -1,0 +1,170 @@
+﻿.btn-file-upload {
+    color: #fff;
+    background-color: #444;
+    border-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+.btn-file-upload:hover{
+    color: #fff;
+    background-color: #333;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.btn-file-upload:focus{
+    color: #fff;
+    background-color: #333;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.margin-left-btn-upload {
+    margin-left: 5px;
+}
+
+.modal-header {
+    background-color: #222D32;
+    color: white;
+    font-weight: bold;
+}
+
+/*----------------------------------- 
+    File upload  style 
+------------------------------------*/
+#upload{
+    font-family:'PT Sans Narrow', sans-serif;
+    padding:10px;
+    border-radius:3px;
+    margin:20px 0 0 0;
+    height: 100%;
+    width: 100%;
+}
+
+#drop{
+    background-color: #fff;
+    padding: 50px 50px;
+    margin-bottom: 30px;
+    border: 2px solid black;
+    border-style: dotted;
+    border-radius: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size:16px;
+    font-weight:bold;
+    color:#7f858a;
+}
+
+#drop a{
+    background-color:#222D32;
+    padding:18px 30px;
+    color:#fff;
+    font-size:14px;
+    border-radius:10px;
+    cursor:pointer;
+    display:inline-block;
+    margin-top:12px;
+    line-height:1;
+}
+
+#upload h4 {
+    font-weight: bold;
+    margin: 0;
+}
+
+#drop a:hover{
+    background-color:#4e565b;
+}
+
+#drop input{
+    display:none;
+}
+
+#upload hr {
+    margin:0 -24px;
+    border-top:1px solid gray;
+    border-bottom:1px solid #3d4043;  
+    top:50px;
+}
+
+#upload ul{
+    list-style:none;
+    margin:0 -24px;
+    border-top:1px solid gray;
+    border-bottom:1px solid #3d4043;
+}
+
+.div-btns {
+   top: 30px;
+   min-height: 30px;
+}
+
+
+#upload ul li{
+    background-color:#fff;
+    background-image:-webkit-linear-gradient(top, #333639, #303335);
+    background-image:-moz-linear-gradient(top, #333639, #303335);
+    background-image:linear-gradient(top, #333639, #303335);
+
+    border-top:1px solid #3d4043;
+    border-bottom:1px solid #2b2e31;
+    padding:15px;
+    height: 75px;
+    margin-left: -40px;
+    position: relative;
+}
+
+#upload ul li input{
+    display: none;
+}
+
+#upload ul li p{
+    overflow: hidden;
+    white-space: nowrap;
+    color: #EEE;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+}
+
+#upload ul li i{
+    font-weight: normal;
+    font-style:normal;
+    color:#7f7f7f;
+    display:block;
+}
+
+#upload ul li canvas{
+    top: 15px;
+    left: 32px;
+    position: absolute;
+}
+
+#upload ul li span{
+    width: 15px;
+    height: 12px;
+    background: url('dist/img/icons-upload.png') no-repeat;
+    position: absolute;
+    top: 34px;
+    right: 33px;
+    cursor:pointer;
+}
+
+#upload ul li.working span{
+    height: 16px;
+    background-position: 0 -12px;
+}
+
+#upload ul li.error p{
+    color:red;
+}
+
+
+#upload ul li.success p{
+    color:#24C47A;
+}
+
+
+#upload ul li.warning p{
+    color:#F39C12;
+}

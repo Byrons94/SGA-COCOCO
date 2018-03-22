@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Gestion_Activos.Models.Ticket>
+
+@{
+    ViewBag.Title = "Pendientes";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}   
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-truck"></i>
+                <h3 class="box-title">Pendientes</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="no-padding">
+                    <table id="table1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.type)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.local_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.contact)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.membership_number)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.visit_date)
+                                </th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-block btn-info btn-sm" onclick="location.href='@Url.Action("Details", new { id_ticket = item.id })'">
+                                        Detalles
+                                    </button>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.local_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.membership_number)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.visit_date)
+                                </td>
+                            </tr>
+                            }
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+  <script type="text/javascript">
+        $(document).ready(function (){
+        $('#table1').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
+    }); 
+</script>
+
+

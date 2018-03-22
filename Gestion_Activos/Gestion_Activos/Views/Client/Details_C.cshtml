@@ -1,0 +1,680 @@
+﻿@model Gestion_Activos.Models.Class.Client
+
+@{
+    ViewBag.Title = "Detalle Afiliado";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+<input type="hidden" id="num_doc_serie" readonly>
+<div class="row ">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa  fa-user"></i>
+                Información del afiliado
+            </div>
+
+            <div class="box-body" style="min-height:200px;">
+                @if (FrontUser.Have_Permission(Permissions_Enum.Actualizar_afiliado))
+                {
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <button class="btn btn-success pull-right" data-toggle="modal" data-target="#confirmar_actulizar">Actualizar afiliado</button> 
+                    </div>
+                </div>
+                }
+                
+                <div class="col-xs-12 col-md-12 col-lg-4">
+                    <div class="box-header with-border">
+                        <i class="fa fa-info"></i>
+                        <h3 class="box-title">Información afiliado</h3>
+                    </div>
+                    <div class="box-body" style="background-color:#F5F5F5;">
+                        <div class="form-group">
+                            <input type="hidden" id="id_client" value="@Model.membership_number">
+                            <div>
+                                <dl class="dl-horizontal">
+                                    @if (Model.last_membership != "N/A" && Model.last_membership != "")
+                                    {
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.last_membership)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.last_membership)
+                                        </dd>
+                                    }
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.membership_number)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.membership_number)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.contact)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.contact)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.local_name)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.local_name)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.phone)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.phone)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.province)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.province)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.canton)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.canton)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.district)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.district)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.address)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.address)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.last_mainteinance)
+                                    </dt>
+
+                                    <dd class="info-dd">
+                                        @Html.DisplayFor(model => model.last_mainteinance)
+                                    </dd>
+
+                                    @if (Model.other != null)
+                                    {
+                                        <dt>
+                                            <span>Referencia</span>
+                                        </dt>
+                                        <dd class="info-dd">
+                                            @Html.DisplayFor(model => model.other)
+                                        </dd>
+                                    }
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.status)
+                                    </dt>
+                                    
+                                    <dd>
+                                        @switch (Model.status_varchar)
+                                        {
+                                            case "A":
+                                                <span class="label label-success">Activo</span>
+                                            break;
+                                            case "I":
+                                                <span class="label label-danger">Inactivo</span>
+                                            break;
+                                            case "R":
+                                                <span class="label label-warning">Retiro</span>
+                                            break;
+                                            case "L":
+                                                <span class="label label-danger">Legal</span>
+                                            break;
+                                            case "X":
+                                                <span class="label label-danger">Irrecuperable</span>
+                                            break;
+                                        }
+                                        @*@if (Model.status)
+                                        {
+                                            <span class="label label-success">Activo</span>
+                                            }
+                                        else
+                                        {
+                                            <span class="label label-danger">Inactivo</span>
+                                        }*@
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.updated)
+                                    </dt>
+
+                                    <dd>
+                                        @if (Model.updated)
+                                        {
+                                            <span class="label label-success">Actualizado</span> 
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">Pendiente</span> 
+                                        }
+                                    </dd>
+                                    @if (Model.new_menbership != "N/A")
+                                        {
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.new_menbership)
+                                        </dt>
+
+                                        <dd class="info-dd">
+                                            @Html.DisplayFor(model => model.new_menbership)
+                                        </dd>
+                                    }
+                                </dl>
+                                @if (FrontUser.Have_Permission(Permissions_Enum.Cambiar_Afiliado) && Model.new_menbership == "N/A")
+                                {
+                                    if (Model.new_menbership == "N/A" || Model.new_menbership == "")
+                                    {
+                                        <button class="pull-right btn-xs btn btn-info" data-toggle="modal" data-target="#modal_cambio_afiliado" id="btn_cambiar_afiliado">Cambiar afiliado</button>
+                                    }
+
+                                    <button class="pull-left btn-xs btn btn-danger" data-toggle="modal" data-target="#modal_desactivar_afiliado" id="btn_desactivar_afiliado">Cambiar estatus</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <i class="fa fa-tachometer"></i>
+                        <h3 class="box-title">General</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="col-lg-12 col-xs-6">
+                            <div class="form-group">
+                                <div>
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-green-active"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Tickets del afiliado</span>
+                                            @if (Model.tickets != null)
+                                        {
+                                                <h1 class="no-margin no-pad-top text-bold ">@Model.tickets.Count()</h1>
+                                            }
+                                            else
+                                            {
+                                                <h1 class="no-margin no-pad-top text-bold ">0</h1>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xs-6">
+                            <div class="form-group">
+                                <div>
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-aqua"><i class="fa  fa-folder-o"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Productos del afiliado</span>
+                                            @if (Model.inventary != null)
+                                        {
+                                                <h1 class="no-margin no-pad-top text-bold ">@Model.inventary.Count()</h1>
+                                            }
+                                            else
+                                            {
+                                                <h1 class="no-margin no-pad-top text-bold ">0</h1>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-lg-8">
+                    <div class="col-xs-12">
+                        <div class="box-header with-border">
+                            <i class="fa fa-ticket"></i>
+                            Tickets
+                        </div>
+                        <div class="box-body" style="max-height:30em; overflow-y:scroll;">
+                            <table id="table1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-light-blue">
+                                        <th> # Boleta</th>
+                                        <th> Evento</th>
+                                        <th> Fecha Visita</th>
+                                        <th> Detalle</th>
+                                        <th> Técnico</th>
+                                        <th> Estado</th>
+                                        <th> Detalles </th>
+                                        <th> Bitácora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.tickets == null)
+                                        {
+                                        <tr>
+                                            <td colspan="8">EL afiliado no tiene tiquetes asociados</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        foreach (var ticket in Model.tickets)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(model => ticket.id)</td>
+                                                <td>@Html.DisplayFor(model => ticket.type)</td>
+                                                <td>@Html.DisplayFor(model => ticket.visit_date)</td>
+                                                <td>@Html.DisplayFor(model => ticket.problem)</td>
+                                                <td>@Html.DisplayFor(model => ticket.technical)</td>
+                                                <td>@Html.DisplayFor(model => ticket.status)</td>
+                                                @if (ticket.id != "")
+                                        {
+                                                <td>
+                                                    <button type="button" class="btn btn-block btn-warning btn-sm btn-info-t" id="@ticket.id">
+                                                        Ver
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-block btn-info btn-sm" href='@Url.Action("Get_Log_Ticket", "Ticket", new { id_ticket = @ticket.id })' target="_blank">
+                                                        Bitacora
+                                                    </a>
+                                                </td>
+                                                }
+                                                else {
+                                                    <td></td>
+                                                    <td></td>
+                                                }
+                                            </tr>
+                                            <tr style="background-color:white" identify="@ticket.id" name="hidden_div" hidden>
+                                                <td colspan="8"><strong>Fecha creación:  </strong> @ticket.date</td>
+                                            </tr>
+                                            <tr style="background-color:white" identify="@ticket.id"  name="hidden_div" hidden>
+                                                <td colspan="8"><strong>Creado por:  </strong> @ticket.user</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <br>
+                        <hr>
+                        <div class="box-header with-border">
+                            <i class="fa fa-desktop"></i>
+                            Inventario actual
+                        </div>
+                        <div class="box-body" style="max-height:30em; overflow-y:scroll;">
+                            <table id="table2" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-light-blue">
+                                        <th>Id</th>
+                                        <th>Descripción</th>
+                                        <th>Serie</th>
+                                        <th>Estado</th>
+                                        <th>Cambiar serie</th>
+                                        <th>Producto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.inventary == null)
+                                    {
+                                        <tr>
+                                            <td colspan="7">EL afiliado no tiene un inventario asociado o fue transferido a otro afiliado</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        foreach (var product in Model.inventary)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(model => product.id) </td>
+                                                <td>@Html.DisplayFor(model => product.description) </td>
+                                                <td class="td_serie" id="@product.serial_number">@Html.DisplayFor(model => product.serial_number) </td>
+                                                <td>@Html.DisplayFor(model => product.state) </td>
+                                                @if (FrontUser.Have_Permission(Permissions_Enum.Gestionar_afiliado))
+                                                { 
+                                                <td>
+                                                    @if (product.serial_number.Trim() != "---SIN SERIE---")
+                                                    {
+                                                        <button type="button" class="btn btn-block btn-primary btn-sm btn_abrir_modal" id="@product.id"  serial="@product.serial_number">
+                                                            Gestionar       
+                                                        </button>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-block btn-danger btn-sm btn-eliminar"  id="@product.id" data-toggle="modal" data-target="#modal_eliminar">
+                                                        Eliminar
+                                                    </button>
+                                                </td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="pull-left col-xs-6 col-lg-2">
+                    <button type="button" class="btn btn-block btn-info" onclick="location.href='@Url.Action("Index")'">
+                        Regresar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* modals *@
+<div class="modal fade" id="modal_serie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa  fa-exchange"></i>
+                    Gestión de series
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <dl>
+                        <dt>Descripción:</dt>
+                        <dd id="dd_descip"></dd>
+                    </dl>
+                </div>
+                <div class="form-group inline margin-bottom row">
+                    <div class="col-xs-6">
+                        <label>Serie actual:</label>
+                        <input type="text" class="form-control" id="txt_serie_actual" readonly>
+                    </div>
+                    <div class="col-xs-6">
+                        <label>Serie nueva:</label>
+                        <input type="text" class="form-control" id="txt_serie_nueva">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-block btn-success" id="btn_cambiar_serie">Cambiar series!</button>
+                    </div>
+                </div>
+
+                <div id="error_msj" class="form-group row" hidden>
+                    <div class="col-xs-12">
+                        <div class="callout callout-danger">
+                            <p id="error_mjs_p">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="succes_mjs" class="form-group row" hidden>
+                    <div class="col-xs-12">
+                        <div class="callout callout-info">
+                            <p>Serie disponible, se guardará el cambio una vez se actualice el afiliado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">
+                    <i class="fa  fa-warning"></i>
+                    Alerta!
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Seguro que desea eliminar el producto del inventario?</h3></center>
+                    <br>
+                    <input  type="hidden" id="id_eliminar">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="btn-confirmacion"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <b>Una vez actualice el cliente estos cambios no podrán ser reversados!</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmar_actulizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa  fa-info"></i>
+                    Actualizar
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Seguro que desea actualizar al afiliado?</h3></center>
+                    <br>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="btn-confirmacion-actualizar"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_cambio_afiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa  fa-exchange"></i>
+                    Cambio de afiliado
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="n_afiliado">Número afiliado:</label>
+                    <input type="text" name="n_afiliado" class="form-control" placeholder="Numero afiliado" id="n_afiliado" required="required">
+                    <label id="lb_error" hidden style="color:red;">Debe cambiar el # de afiliado</label>
+                </div>
+                <div class="form-group">
+                    <label for="contacto">Contacto:</label>
+                    <input type="text" name="contacto" class="form-control" placeholder="Contacto" id="contacto" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="comercio">Comercio:</label>
+                    <input type="text" name="comercio" class="form-control" placeholder="Comercio" id="comercio" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" name="telefono" class="form-control" placeholder="Teléfono" id="telefono" required="required">
+                </div>
+                <div class="form-group">
+                    <label>Provincia:</label>
+                    <select class="form-control" name="provincia" id="provincia" required="required"></select>
+                </div>
+                <div class="form-group">
+                    <label>Cantón:</label>
+                    <select class="form-control" name="canton" id="canton" required="required"></select>
+                </div>
+                <div class="form-group">
+                    <label>Distrito:</label>
+                    <select class="form-control" name="distrito" id="distrito" required="required"></select>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <textarea type="text" name="direcion" class="form-control" placeholder="Dirección" style="resize:none;" id="direccion" required="required"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="referencia">Referencia:</label>
+                    <input type="text" name="referencia" class="form-control" placeholder="Referencia" style="resize:none;" id="referencia">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_confirmar_cambio">Cambiar Afiliado</button>
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_desactivar_afiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">
+                    <i class="fa fa-exchange"></i>
+                    Cambiando el estado del afiliado
+                </h2>
+            </div>
+            <div class="modal-body">
+                <center><h3>Seleccione el nuevo estado al que desea cambiar:</h3></center>
+                <br>
+                <input type="hidden" id="id_eliminar">
+                <input type="hidden" id="id_status" value="@Model.status_varchar">
+                <div class="row">
+                    <div class="margin"><button type="button" class="btn btn-lg btn-status btn-block" value="A">Activo</button></div>
+                    <div class="margin"><button type="button" class="btn btn-lg btn-status btn-block" value="I">Inactivo</button></div>
+                    <div class="margin"><button type="button" class="btn btn-lg btn-status btn-block" value="R">Retiro</button></div>
+                    <div class="margin"><button type="button" class="btn btn-lg btn-status btn-block" value="L">Legal</button></div>
+                    <div class="margin"><button type="button" class="btn btn-lg btn-status btn-block" value="X">Irrecuperable</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-lef" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                <button type="button" class="btn btn-success" id="cambiar_inhabilitar"><i class="fa  fa-check"></i>Cambiar estado</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_activar_afiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">
+                    <i class="fa  fa-warning"></i>
+                    Alerta!
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Seguro que desea habilitar el afiliado?</h3></center>
+                    <br>
+                    <input type="hidden" id="id_eliminar">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="cambiar_habilitar"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_confirmar_cambio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">
+                    <i class="fa  fa-warning"></i>
+                    Alerta!
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Seguro que desea cambiar el afiliado?</h3></center>
+                    <br>
+                    <input type="hidden" id="id_eliminar">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="cambiar_afiliado"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <b>Una vez actualice el cliente estos cambios no podrán ser reversados!</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* end modals *@
+<script src="@Url.Content("~/Scripts/Views/Client/Details_C.js")" type="text/javascript"></script>

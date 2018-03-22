@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28757460dc7a4ae98178a90539df008e" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_GARA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_MOV1" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_PROD" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_PERMISOS" Width="1.5" PointX="15.375" PointY="3.375" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_ROLES" Width="1.5" PointX="9.375" PointY="2.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_ROLES_PERMISOS" Width="1.5" PointX="11.625" PointY="1.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_USUARIOS" Width="1.5" PointX="11.75" PointY="4.625" />
+        <AssociationConnector Association="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1" />
+        <AssociationConnector Association="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS" />
+        <AssociationConnector Association="BMS_DATA_DENTModel.FK_SGA_USUARIOS_SGA_ROLES" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_MOVS" Width="1.5" PointX="5" PointY="2.125" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_BITACORA_TICKET" Width="1.5" PointX="11.375" PointY="8.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_AFILIADOS" Width="1.5" PointX="9.25" PointY="8.625" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.WEB_Canton" Width="1.5" PointX="13.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.WEB_Distrito" Width="1.5" PointX="15.875" PointY="11.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.WEB_Provincia" Width="1.5" PointX="17.875" PointY="11.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_BITACORA_SERIE" Width="1.5" PointX="15.875" PointY="6.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_EXEPCIONES" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_TECN" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_GARV" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_CATEGORY_PRODUCT" Width="1.5" PointX="9.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.INV_DANOS" Width="1.5" PointX="11.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_CAMBIO_AFILIADO" Width="1.5" PointX="13.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_ESTADO_PRODUCTOS" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BMS_DATA_DENTModel.SGA_EVIDENCIA_TICKET" Width="1.5" PointX="5.375" PointY="16.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

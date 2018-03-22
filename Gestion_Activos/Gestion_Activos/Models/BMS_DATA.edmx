@@ -1,0 +1,2249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BMS_DATA_DENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BMS_DATA_DENT.dbo.INV_DANOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="INV_DANOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="Descripcion" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INV_GARA">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="NUM_DOC_GARANTIA" />
+            <PropertyRef Name="CODIGO_BOLETA" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="NUM_DOC_GARANTIA" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="FECHA_INGRESO" Type="datetime" Nullable="false" />
+          <Property Name="TIPO_GARANTIA" Type="char" MaxLength="1" />
+          <Property Name="COD_CLIE" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="NOTA_1" Type="char" MaxLength="70" />
+          <Property Name="CODIGO_BOLETA" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="TECNICO" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="FECHA_ENTREGA" Type="datetime" />
+          <Property Name="PROBLEMA_1" Type="char" MaxLength="70" />
+          <Property Name="PROBLEMA_2" Type="char" MaxLength="70" />
+          <Property Name="PROBLEMA_3" Type="char" MaxLength="70" />
+          <Property Name="PROBLEMA_4" Type="char" MaxLength="70" />
+          <Property Name="SOLUCION_1" Type="char" MaxLength="70" />
+          <Property Name="SOLUCION_2" Type="char" MaxLength="70" />
+          <Property Name="SOLUCION_3" Type="char" MaxLength="70" />
+          <Property Name="SOLUCION_4" Type="char" MaxLength="70" />
+          <Property Name="STATUS" Type="char" MaxLength="1" />
+          <Property Name="RMA" Type="char" MaxLength="10" />
+          <Property Name="CONTACTO" Type="char" MaxLength="70" />
+          <Property Name="TELEFONO" Type="char" MaxLength="70" />
+          <Property Name="HORA" Type="char" MaxLength="5" />
+          <Property Name="FECHA_REPARADO" Type="datetime" />
+          <Property Name="RECIBE" Type="char" MaxLength="10" />
+          <Property Name="ORDEN_COMPRA" Type="char" MaxLength="10" />
+          <Property Name="USUARIO" Type="char" MaxLength="10" />
+          <Property Name="FACTURADO" Type="char" MaxLength="1" />
+          <Property Name="FACTURA" Type="char" MaxLength="10" />
+          <Property Name="MANO_OBRA" Type="money" />
+          <Property Name="MATERIALES" Type="money" />
+          <Property Name="N_COORDINA" Type="char" MaxLength="50" />
+          <Property Name="N_EJECUTIVO" Type="char" MaxLength="50" />
+          <Property Name="N_AFILIADO" Type="char" MaxLength="10" />
+          <Property Name="N_CLIENTE" Type="char" MaxLength="50" />
+          <Property Name="N_DIRECCION" Type="char" MaxLength="300" />
+          <Property Name="N_HORA_P" Type="char" MaxLength="5" />
+          <Property Name="N_FECHA_P" Type="datetime" />
+          <Property Name="N_CANTIDAD" Type="money" />
+          <Property Name="N_TECNICO" Type="char" MaxLength="50" />
+          <Property Name="N_TIPO" Type="char" MaxLength="300" />
+          <Property Name="N_INTERNET" Type="char" MaxLength="1" />
+          <Property Name="N_MUEBLE" Type="char" MaxLength="1" />
+          <Property Name="N_ELECTRICIDAD" Type="char" MaxLength="1" />
+          <Property Name="N_COD_PROV" Type="char" MaxLength="1" />
+          <Property Name="N_COD_CANT" Type="char" MaxLength="2" />
+          <Property Name="N_COD_DIST" Type="char" MaxLength="2" />
+          <Property Name="TIPO_EVENTO" Type="char" MaxLength="1" />
+          <Property Name="FECHA_DIAGNOSTICADO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INV_GARV">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="NUM_DOC_GARANTIA" />
+            <PropertyRef Name="SECUENCIA" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="NUM_DOC_GARANTIA" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="SECUENCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" />
+          <Property Name="HORA" Type="char" MaxLength="5" />
+          <Property Name="DETALLE1" Type="char" MaxLength="70" />
+          <Property Name="DETALLE2" Type="char" MaxLength="70" />
+          <Property Name="DETALLE3" Type="char" MaxLength="70" />
+          <Property Name="CONFIDENCIAL" Type="char" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="INV_MOV1">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TIPO" />
+            <PropertyRef Name="NUM_DOC" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="MES_PROC" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ANO_PROC" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="COD_TIPO" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="NUM_DOC" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CONSECUTIVO" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_DIG" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="30" />
+          <Property Name="COD_AUX1" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="COD_AUX2" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="SISTEMA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="CAMBIO" Type="money" />
+          <Property Name="COSTO_L" Type="money" />
+          <Property Name="COSTO_E" Type="money" />
+          <Property Name="BRUTO" Type="money" />
+          <Property Name="BRUTO_EX" Type="money" />
+          <Property Name="BRUTO_GR" Type="money" />
+          <Property Name="IMP_1" Type="money" />
+          <Property Name="IMP_2" Type="money" />
+          <Property Name="IMP_3" Type="money" />
+          <Property Name="IMP_4" Type="money" />
+          <Property Name="DESCUENTO" Type="money" />
+          <Property Name="DESCUENTO_EX" Type="money" />
+          <Property Name="DESCUENTO_GR" Type="money" />
+          <Property Name="NETO" Type="money" />
+          <Property Name="NETO_EX" Type="money" />
+          <Property Name="NETO_GR" Type="money" />
+          <Property Name="NULO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NOTAS" Type="char" MaxLength="100" />
+          <Property Name="CIA_CXP" Type="char" MaxLength="3" />
+          <Property Name="COD_PROV" Type="char" MaxLength="5" />
+          <Property Name="TIPO_CREDITO" Type="char" MaxLength="1" />
+          <Property Name="F_VENCE" Type="datetime" />
+          <Property Name="REFERENCIA" Type="char" MaxLength="10" />
+          <Property Name="ADI1" Type="money" />
+          <Property Name="ADI2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ADI3" Type="money" />
+          <Property Name="ADI4" Type="char" MaxLength="30" />
+          <Property Name="ADI5" Type="char" MaxLength="50" />
+          <Property Name="ADI6" Type="char" MaxLength="30" />
+          <Property Name="ADI7" Type="char" MaxLength="30" />
+          <Property Name="ADI8" Type="char" MaxLength="30" />
+          <Property Name="ADI9" Type="datetime" />
+          <Property Name="ADI10" Type="datetime" />
+          <Property Name="ADI11" Type="datetime" />
+          <Property Name="COD_VEND" Type="char" MaxLength="5" />
+          <Property Name="COD_RUTA" Type="char" MaxLength="5" />
+          <Property Name="NIVEL_PRECIO" Type="char" MaxLength="1" />
+          <Property Name="COD_FPAG" Type="char" MaxLength="2" />
+          <Property Name="CIA_FAC" Type="char" MaxLength="3" />
+          <Property Name="DETALLE" Type="text" />
+          <Property Name="MONEDA" Type="char" MaxLength="1" />
+          <Property Name="IMPRIMIR_SERV" Type="char" MaxLength="1" />
+          <Property Name="CONFIRMADO" Type="char" MaxLength="1" />
+          <Property Name="USER_CONFIRMA" Type="char" MaxLength="30" />
+          <Property Name="DIA_CONFIRMA" Type="datetime" />
+          <Property Name="STATUS_ENT" Type="char" MaxLength="1" />
+          <Property Name="MOTIVO" Type="varchar" MaxLength="300" />
+          <Property Name="X" Type="char" MaxLength="20" />
+          <Property Name="Y" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="INV_MOVS">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TIPO" />
+            <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="COD_PROD" />
+            <PropertyRef Name="CONSECUTIVO" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="COD_TIPO" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="NUM_DOC" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="COD_PROD" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="CONSECUTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIE" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="NOTAS" Type="char" MaxLength="90" Nullable="false" />
+          <Property Name="PEDIDO" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="INV_PROD">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_PROD" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="COD_PROD" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="COD_FAMI" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="COD_SUBF" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="COD_DEPA" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="COD_ADIC" Type="char" MaxLength="40" />
+          <Property Name="NOMBRE_1" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="NOMBRE_2" Type="varchar" MaxLength="330" />
+          <Property Name="LOCALIZACION" Type="char" MaxLength="10" />
+          <Property Name="UNI_MED" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="VOLUMEN" Type="numeric" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="PESO" Type="numeric" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="ULTIMO_D" Type="datetime" />
+          <Property Name="ULTIMO_H" Type="datetime" />
+          <Property Name="IMP_1" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IMP_2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IMP_3" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IMP_4" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CUENTA_D" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="CUENTA_H" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="ACTIVO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DESC_MAX" Type="money" Nullable="false" />
+          <Property Name="UTIL_MIN" Type="money" Nullable="false" />
+          <Property Name="UTIL_P1" Type="money" Nullable="false" />
+          <Property Name="UTIL_P2" Type="money" Nullable="false" />
+          <Property Name="UTIL_P3" Type="money" Nullable="false" />
+          <Property Name="UTIL_P4" Type="money" Nullable="false" />
+          <Property Name="UTIL_P5" Type="money" Nullable="false" />
+          <Property Name="UTIL_P6" Type="money" Nullable="false" />
+          <Property Name="UTIL_P7" Type="money" Nullable="false" />
+          <Property Name="UTIL_P8" Type="money" Nullable="false" />
+          <Property Name="UTIL_P9" Type="money" Nullable="false" />
+          <Property Name="PRECIO_1" Type="money" Nullable="false" />
+          <Property Name="PRECIO_2" Type="money" Nullable="false" />
+          <Property Name="PRECIO_3" Type="money" Nullable="false" />
+          <Property Name="PRECIO_4" Type="money" Nullable="false" />
+          <Property Name="PRECIO_5" Type="money" Nullable="false" />
+          <Property Name="PRECIO_6" Type="money" Nullable="false" />
+          <Property Name="PRECIO_7" Type="money" Nullable="false" />
+          <Property Name="PRECIO_8" Type="money" Nullable="false" />
+          <Property Name="PRECIO_9" Type="money" />
+          <Property Name="MINIMO" Type="money" />
+          <Property Name="MAXIMO" Type="money" />
+          <Property Name="PEDIDOS" Type="money" />
+          <Property Name="COMPRAS" Type="money" />
+          <Property Name="ULTIMO_L" Type="money" />
+          <Property Name="ULTIMO_E" Type="money" />
+          <Property Name="SERIE" Type="char" MaxLength="1" />
+          <Property Name="GARANTIA" Type="char" MaxLength="1" />
+          <Property Name="MESES_GARANTIA" Type="int" />
+          <Property Name="ULT_COD_PROV" Type="char" MaxLength="5" />
+          <Property Name="CANTIDAD_DIAS" Type="int" />
+          <Property Name="LOCALIZACION_2" Type="char" MaxLength="10" />
+          <Property Name="PROMOCION" Type="char" MaxLength="1" />
+          <Property Name="DESC_PROM" Type="money" />
+          <Property Name="PROM_DEL" Type="datetime" />
+          <Property Name="PROM_AL" Type="datetime" />
+          <Property Name="IMP_PART" Type="char" MaxLength="30" />
+          <Property Name="PRODUCIR_1" Type="money" />
+          <Property Name="PRODUCIR_2" Type="money" />
+          <Property Name="PRODUCIR_3" Type="money" />
+          <Property Name="COD_UBIC" Type="char" MaxLength="10" />
+          <Property Name="PEDIR" Type="char" MaxLength="1" />
+          <Property Name="ULTIMO_FOB" Type="money" />
+          <Property Name="COD_BARRAS" Type="char" MaxLength="30" />
+          <Property Name="NOTAS" Type="char" MaxLength="70" />
+          <Property Name="ID_ABC" Type="char" MaxLength="1" />
+          <Property Name="ID_INDICADOR" Type="char" MaxLength="1" />
+          <Property Name="FOTO" Type="varchar" MaxLength="500" />
+          <Property Name="COMPRAS_MOVIL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="COMISION" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="INV_TECN">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TECN" />
+          </Key>
+          <Property Name="CIA" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="COD_TECN" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="DES_TECN" Type="char" MaxLength="50" />
+          <Property Name="POR_COMI" Type="money" />
+        </EntityType>
+        <EntityType Name="SGA_AFILIADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="N_AFILIADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION_1" Type="varchar" MaxLength="500" />
+          <Property Name="DIRECCION_2" Type="varchar" MaxLength="500" />
+          <Property Name="NOMBRE_NEGOCIO" Type="varchar" MaxLength="100" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="100" />
+          <Property Name="N_COD_PROV" Type="varchar" MaxLength="1" />
+          <Property Name="N_COD_CANT" Type="varchar" MaxLength="2" />
+          <Property Name="N_COD_DIST" Type="varchar" MaxLength="2" />
+          <Property Name="ACTUALIZADO" Type="bit" />
+          <Property Name="ACTIVO" Type="bit" />
+          <Property Name="ANTIGUO_N_AFILIADO" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="EXTRA_1" Type="varchar" MaxLength="50" />
+          <Property Name="EXTRA_2" Type="varchar" MaxLength="150" />
+          <Property Name="FECHA_INACTIVACION" Type="datetime" />
+          <Property Name="INVENTARIO_ACTUALIZADO" Type="bit" />
+          <Property Name="ESTATUS" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="SGA_BITACORA_SERIE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIAL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="DETALLE" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="RESPONSABLE" Type="varchar" MaxLength="50" />
+          <Property Name="NUM_TICKET" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SGA_BITACORA_TICKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_TICKET" Type="varchar" MaxLength="15" />
+          <Property Name="TIPO_MOVIMIENTO" Type="char" MaxLength="1" />
+          <Property Name="AVERIA_REPORTADA" Type="varchar" MaxLength="1000" />
+          <Property Name="DIAGNOSTICO" Type="varchar" MaxLength="1000" />
+          <Property Name="SOLUCION" Type="varchar" MaxLength="1000" />
+          <Property Name="EXPOSICION_EQUIPO" Type="varchar" MaxLength="50" />
+          <Property Name="EXPOSICION_EQUIPO_2" Type="varchar" MaxLength="50" />
+          <Property Name="MANTENIMIENTO" Type="varchar" MaxLength="50" />
+          <Property Name="PRUEBAS" Type="varchar" MaxLength="50" />
+          <Property Name="TIPO_CONEXION" Type="varchar" MaxLength="50" />
+          <Property Name="DETALLE_INSTALACION" Type="varchar" MaxLength="50" />
+          <Property Name="EXPOSICION_EQUIPO_VISITA" Type="varchar" MaxLength="50" />
+          <Property Name="OTROS" Type="varchar" MaxLength="1000" />
+          <Property Name="FECHA_DIG" Type="datetime" />
+          <Property Name="EXTRA_1" Type="varchar" MaxLength="1000" />
+          <Property Name="EXTRA_2" Type="varchar" MaxLength="1000" />
+          <Property Name="EXTRA_3" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="SGA_CAMBIO_AFILIADO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANTIGUO_AFILIADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUEVO_AFILIADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DETALLE" Type="varchar" MaxLength="250" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="AFILIADO_INICIAL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SGA_CATEGORY_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_CATEGORIA" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SGA_ESTADO_PRODUCTOS">
+          <Key>
+            <PropertyRef Name="SERIE_CONSECUTIVO" />
+            <PropertyRef Name="COD_PROD" />
+            <PropertyRef Name="ID_BOLETA" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIE_CONSECUTIVO" Type="int" Nullable="false" />
+          <Property Name="COD_PROD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_BOLETA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="200" />
+          <Property Name="FECHA" Type="datetime" />
+          <Property Name="ACCION" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SGA_EVIDENCIA_TICKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="500" />
+          <Property Name="PATH" Type="varchar" MaxLength="1000" />
+          <Property Name="EXTENSION" Type="varchar" MaxLength="50" />
+          <Property Name="MEMBERSHIP_ID" Type="varchar" MaxLength="100" />
+          <Property Name="ID_TICKET" Type="varchar" MaxLength="100" />
+          <Property Name="DATE" Type="datetime" />
+          <Property Name="ACTIVE" Type="bit" />
+          <Property Name="UPDATED" Type="datetime" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SGA_EXEPCIONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODULO" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DETALLE" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SGA_PERMISOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDENTIFICADOR" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CATEGORIA" Type="int" />
+        </EntityType>
+        <EntityType Name="SGA_ROLES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_ROL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PERMANENTE" Type="bit" />
+        </EntityType>
+        <EntityType Name="SGA_ROLES_PERMISOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PERMISO" Type="int" Nullable="false" />
+          <Property Name="ID_ROL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SGA_USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USER_LOGIN" Type="varchar" MaxLength="50" />
+          <Property Name="CONTRASENA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA_REGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="ROL" Type="int" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="COD_TECNICO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WEB_Canton">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+            <PropertyRef Name="idCanton" />
+          </Key>
+          <Property Name="idProvincia" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="idCanton" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="nombreCanton" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WEB_Distrito">
+          <Key>
+            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idProvincia" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="idCanton" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="idDistrito" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="nombreDistrito" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WEB_Provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="nombreProvincia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS">
+          <End Role="SGA_ROLES" Type="Self.SGA_ROLES" Multiplicity="1" />
+          <End Role="SGA_ROLES_PERMISOS" Type="Self.SGA_ROLES_PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_ROLES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_ROLES_PERMISOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1">
+          <End Role="SGA_PERMISOS" Type="Self.SGA_PERMISOS" Multiplicity="1" />
+          <End Role="SGA_ROLES_PERMISOS" Type="Self.SGA_ROLES_PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_PERMISOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_ROLES_PERMISOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SGA_USUARIOS_SGA_ROLES">
+          <End Role="SGA_ROLES" Type="Self.SGA_ROLES" Multiplicity="1" />
+          <End Role="SGA_USUARIOS" Type="Self.SGA_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_ROLES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_USUARIOS">
+              <PropertyRef Name="ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="F_AFILIADOS_INSTALACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="F_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="F_FIN" Type="datetime" Mode="In" />
+          <Parameter Name="STATUS" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="COMERCIO" Type="varchar" MaxLength="500" />
+                <Property Name="AFILIADO" Type="varchar" MaxLength="50" />
+                <Property Name="CONTACTO" Type="varchar" MaxLength="500" />
+                <Property Name="TELEFONO" Type="varchar" MaxLength="50" />
+                <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+                <Property Name="PROVINCIA" Type="varchar" MaxLength="50" />
+                <Property Name="AREA" Type="varchar" MaxLength="50" />
+                <Property Name="EJECUTIVO" Type="varchar" MaxLength="50" />
+                <Property Name="TIPO_SOF" Type="varchar" MaxLength="50" />
+                <Property Name="TIPO_INDU" Type="varchar" MaxLength="50" />
+                <Property Name="LICENCIA" Type="varchar" MaxLength="500" />
+                <Property Name="FEC_INSTA" Type="datetime" />
+                <Property Name="FEC_COMP" Type="datetime" />
+                <Property Name="PAGO_MEN" Type="varchar" MaxLength="500" />
+                <Property Name="MOT_RETIRO" Type="varchar" MaxLength="500" />
+                <Property Name="FEC_RETIRO" Type="datetime" />
+                <Property Name="DIRECCION" Type="varchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_BUSQUEDA_AFILIADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BUSQUEDA" Type="varchar" Mode="In" />
+          <Parameter Name="PARAMETRO" Type="varchar" Mode="In" />
+          <Parameter Name="ESTATUS" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="int" />
+                <Property Name="N_AFILIADO" Type="varchar" MaxLength="50" />
+                <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+                <Property Name="DIRECCION_1" Type="varchar" MaxLength="500" />
+                <Property Name="DIRECCION_2" Type="varchar" MaxLength="500" />
+                <Property Name="NOMBRE_NEGOCIO" Type="varchar" MaxLength="100" />
+                <Property Name="TELEFONO" Type="varchar" MaxLength="50" />
+                <Property Name="N_COD_PROV" Type="varchar" MaxLength="50" />
+                <Property Name="N_COD_CANT" Type="varchar" MaxLength="50" />
+                <Property Name="N_COD_DIST" Type="varchar" MaxLength="50" />
+                <Property Name="ACTUALIZADO" Type="bit" />
+                <Property Name="ACTIVO" Type="bit" />
+                <Property Name="ACTIVO_V" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_BUSQUEDA_SERIE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BUSQUEDA" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="CONSECUTIVO" Type="varchar" MaxLength="50" />
+                <Property Name="SERIE" Type="varchar" MaxLength="100" />
+                <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="USUARIO" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_BUSQUEDA_TICKET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BUSQUEDA" Type="varchar" Mode="In" />
+          <Parameter Name="PARAMETRO" Type="varchar" Mode="In" />
+          <Parameter Name="ESTATUS" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="varchar" MaxLength="20" />
+                <Property Name="TIPO" Type="varchar" MaxLength="20" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="USUARIO" Type="varchar" MaxLength="250" />
+                <Property Name="TECNICO" Type="varchar" MaxLength="250" />
+                <Property Name="N_AFILIADO" Type="varchar" MaxLength="250" />
+                <Property Name="CONTACTO" Type="varchar" MaxLength="250" />
+                <Property Name="LOCAL_N" Type="varchar" MaxLength="2150" />
+                <Property Name="TELEFONO" Type="varchar" MaxLength="250" />
+                <Property Name="PROBLEMA" Type="varchar" MaxLength="500" />
+                <Property Name="DIA_VISITA" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_HISTORIAL_SERIE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SERIAL" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MOVIMIENTO" Type="varchar" MaxLength="100" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="RESPONSABLE" Type="varchar" MaxLength="100" />
+                <Property Name="DETALLE" Type="varchar" MaxLength="300" />
+                <Property Name="TIQUETE" Type="varchar" MaxLength="200" />
+                <Property Name="NOTAS" Type="varchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_INVENTARIO_AFILIADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="n_afiliado" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="int" />
+                <Property Name="COD_PROD" Type="varchar" MaxLength="30" />
+                <Property Name="COD_TIPO" Type="varchar" MaxLength="2" />
+                <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
+                <Property Name="SERIE" Type="varchar" MaxLength="30" />
+                <Property Name="CATEGORIA" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_INVENTARIO_CREDOMATIC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MES" Type="varchar" Mode="In" />
+          <Parameter Name="ANO" Type="varchar" Mode="In" />
+          <Parameter Name="PARAMETRO" Type="varchar" Mode="In" />
+          <Parameter Name="P_CONSULTA" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="COD_PROD" Type="varchar" MaxLength="50" />
+                <Property Name="DESCRIPCION" Type="varchar" MaxLength="1000" />
+                <Property Name="COMPRADOS" Type="int" />
+                <Property Name="INSTALADOS" Type="int" />
+                <Property Name="RETIRADOS" Type="int" />
+                <Property Name="DESECHADO" Type="int" />
+                <Property Name="REACONDI" Type="int" />
+                <Property Name="SALDO_INI" Type="int" />
+                <Property Name="SALDO_FIN" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_MOVIMIENTOS_POR_PRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CIA" Type="varchar" Mode="In" />
+          <Parameter Name="F_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="F_FIN" Type="datetime" Mode="In" />
+          <Parameter Name="CATEGORIA" Type="varchar" Mode="In" />
+          <Parameter Name="MOVIMIENTO" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="FECHA_MOVI" Type="datetime" />
+                <Property Name="NEGOCIO" Type="varchar" MaxLength="500" />
+                <Property Name="AFILIADO" Type="varchar" MaxLength="50" />
+                <Property Name="TIPO" Type="varchar" MaxLength="100" />
+                <Property Name="COD_PROD" Type="varchar" MaxLength="100" />
+                <Property Name="NUM_DOC" Type="varchar" MaxLength="100" />
+                <Property Name="CATEGORIA" Type="varchar" MaxLength="100" />
+                <Property Name="PRODUCTO" Type="varchar" MaxLength="1000" />
+                <Property Name="SERIE" Type="varchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_OBTENER_RESUMEN_TICKETS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_tec" Type="varchar" Mode="In" />
+          <Parameter Name="dias_h" Type="int" Mode="In" />
+          <Parameter Name="parametro" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="DIA" Type="varchar" MaxLength="50" />
+                <Property Name="FECHA" Type="date" />
+                <Property Name="INSTALADO" Type="int" />
+                <Property Name="VISITADO" Type="int" />
+                <Property Name="RETIRADO" Type="int" />
+                <Property Name="TOTAL" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_PRODUCTOS_INSTALADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="F_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="F_FIN" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="REFERENCIA" Type="varchar" MaxLength="10" />
+                <Property Name="SERIE" Type="varchar" MaxLength="50" />
+                <Property Name="CATEGORIA" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_REPORTE_MANTENIMIENTO_AFILIADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="F_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="F_FIN" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID_TICKET" Type="varchar" MaxLength="100" />
+                <Property Name="NOMBRE_NEGOCIO" Type="varchar" MaxLength="100" />
+                <Property Name="N_AFILIADO" Type="varchar" MaxLength="50" />
+                <Property Name="T_SERVICE" Type="varchar" MaxLength="100" />
+                <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+                <Property Name="FECHA" Type="date" />
+                <Property Name="TECNICO" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_SGA_AFILIADOS_SIN_MANTENIMIENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MESES" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="N_AFILIADO" Type="varchar" MaxLength="50" />
+                <Property Name="NOMBRE" Type="varchar" MaxLength="500" />
+                <Property Name="DIRECCION" Type="varchar" MaxLength="1000" />
+                <Property Name="NEGOCIO" Type="varchar" MaxLength="500" />
+                <Property Name="TELEFONO" Type="varchar" MaxLength="100" />
+                <Property Name="PROVINCIA" Type="varchar" MaxLength="100" />
+                <Property Name="CANTON" Type="varchar" MaxLength="100" />
+                <Property Name="DISTRITO" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_SGA_PRODUCTOS_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="int" />
+                <Property Name="COD_CLIE" Type="varchar" MaxLength="50" />
+                <Property Name="COD_PROD" Type="varchar" MaxLength="50" />
+                <Property Name="ID_SERIE" Type="varchar" MaxLength="50" />
+                <Property Name="N_SERIE" Type="varchar" MaxLength="50" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="CATEGORIA" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_TICKETS_AFILIADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="N_AFILIADO2" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="varchar" MaxLength="100" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="USUARIO" Type="varchar" MaxLength="100" />
+                <Property Name="ESTATUS" Type="varchar" MaxLength="500" />
+                <Property Name="TECNICO" Type="varchar" MaxLength="100" />
+                <Property Name="N_AFILIADO" Type="varchar" MaxLength="100" />
+                <Property Name="CONTACTO" Type="varchar" MaxLength="500" />
+                <Property Name="LOCAL_N" Type="varchar" MaxLength="500" />
+                <Property Name="TELEFONO" Type="varchar" MaxLength="100" />
+                <Property Name="PROBLEMA" Type="varchar" MaxLength="500" />
+                <Property Name="PROVINCIA" Type="varchar" MaxLength="50" />
+                <Property Name="CANTON" Type="varchar" MaxLength="50" />
+                <Property Name="DISTRITO" Type="varchar" MaxLength="50" />
+                <Property Name="DIRECCION" Type="varchar" MaxLength="1000" />
+                <Property Name="DIA_VISITA" Type="datetime" />
+                <Property Name="TIPO" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="SGA_ACTUALIZAR_ESTATUS_PRODUCTO_AFILIADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="num_afiliado" Type="varchar" Mode="In" />
+          <Parameter Name="serie_consecutivo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SGA_CAMBIAR_AFILIADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OLD_AFILIADO" Type="varchar" Mode="In" />
+          <Parameter Name="N_AFILIADO" Type="varchar" Mode="In" />
+          <Parameter Name="CONTACTO" Type="varchar" Mode="In" />
+          <Parameter Name="COMERCIO" Type="varchar" Mode="In" />
+          <Parameter Name="TELEFONO" Type="varchar" Mode="In" />
+          <Parameter Name="PROVINCIA" Type="varchar" Mode="In" />
+          <Parameter Name="CANTON" Type="varchar" Mode="In" />
+          <Parameter Name="DISTRITO" Type="varchar" Mode="In" />
+          <Parameter Name="DIRECCION" Type="varchar" Mode="In" />
+          <Parameter Name="REFERENCIA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SGA_F_STATUS_SERIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="serie_validar" Type="varchar" Mode="In" />
+          <Parameter Name="num_ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SGA_STATUS_SERIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_serie_validar" Type="varchar" Mode="In" />
+          <Parameter Name="p_num_ticket" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BMS_DATA_DENTModelStoreContainer">
+          <EntitySet Name="INV_GARA" EntityType="Self.INV_GARA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_GARV" EntityType="Self.INV_GARV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_MOV1" EntityType="Self.INV_MOV1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_MOVS" EntityType="Self.INV_MOVS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_PROD" EntityType="Self.INV_PROD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_TECN" EntityType="Self.INV_TECN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_AFILIADOS" EntityType="Self.SGA_AFILIADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_BITACORA_SERIE" EntityType="Self.SGA_BITACORA_SERIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_BITACORA_TICKET" EntityType="Self.SGA_BITACORA_TICKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_CAMBIO_AFILIADO" EntityType="Self.SGA_CAMBIO_AFILIADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_CATEGORY_PRODUCT" EntityType="Self.SGA_CATEGORY_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_ESTADO_PRODUCTOS" EntityType="Self.SGA_ESTADO_PRODUCTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_EVIDENCIA_TICKET" EntityType="Self.SGA_EVIDENCIA_TICKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_EXEPCIONES" EntityType="Self.SGA_EXEPCIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_PERMISOS" EntityType="Self.SGA_PERMISOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_ROLES" EntityType="Self.SGA_ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_ROLES_PERMISOS" EntityType="Self.SGA_ROLES_PERMISOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SGA_USUARIOS" EntityType="Self.SGA_USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_Canton" EntityType="Self.WEB_Canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_Distrito" EntityType="Self.WEB_Distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_Provincia" EntityType="Self.WEB_Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_DANOS" EntityType="Self.INV_DANOS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [INV_DANOS].[ID] AS [ID], 
+    [INV_DANOS].[CIA] AS [CIA], 
+    [INV_DANOS].[Descripcion] AS [Descripcion]
+    FROM [dbo].[INV_DANOS] AS [INV_DANOS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS" Association="Self.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS">
+            <End Role="SGA_ROLES" EntitySet="SGA_ROLES" />
+            <End Role="SGA_ROLES_PERMISOS" EntitySet="SGA_ROLES_PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1" Association="Self.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1">
+            <End Role="SGA_PERMISOS" EntitySet="SGA_PERMISOS" />
+            <End Role="SGA_ROLES_PERMISOS" EntitySet="SGA_ROLES_PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SGA_USUARIOS_SGA_ROLES" Association="Self.FK_SGA_USUARIOS_SGA_ROLES">
+            <End Role="SGA_ROLES" EntitySet="SGA_ROLES" />
+            <End Role="SGA_USUARIOS" EntitySet="SGA_USUARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BMS_DATA_DENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="INV_GARA">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="NUM_DOC_GARANTIA" />
+            <PropertyRef Name="CODIGO_BOLETA" />
+          </Key>
+          <Property Name="CIA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_DOC_GARANTIA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_INGRESO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TIPO_GARANTIA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COD_CLIE" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOTA_1" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="CODIGO_BOLETA" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TECNICO" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_ENTREGA" Type="DateTime" Precision="3" />
+          <Property Name="PROBLEMA_1" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="PROBLEMA_2" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="PROBLEMA_3" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="PROBLEMA_4" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="SOLUCION_1" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="SOLUCION_2" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="SOLUCION_3" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="SOLUCION_4" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RMA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CONTACTO" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="HORA" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA_REPARADO" Type="DateTime" Precision="3" />
+          <Property Name="RECIBE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ORDEN_COMPRA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="FACTURADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FACTURA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MANO_OBRA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MATERIALES" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="N_COORDINA" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="N_EJECUTIVO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="N_AFILIADO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="N_CLIENTE" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="N_DIRECCION" Type="String" MaxLength="300" FixedLength="true" Unicode="false" />
+          <Property Name="N_HORA_P" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="N_FECHA_P" Type="DateTime" Precision="3" />
+          <Property Name="N_CANTIDAD" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="N_TECNICO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="N_TIPO" Type="String" MaxLength="300" FixedLength="true" Unicode="false" />
+          <Property Name="N_INTERNET" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="N_MUEBLE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="N_ELECTRICIDAD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="N_COD_PROV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="N_COD_CANT" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="N_COD_DIST" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_EVENTO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA_DIAGNOSTICADO" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="INV_MOV1">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TIPO" />
+            <PropertyRef Name="NUM_DOC" />
+          </Key>
+          <Property Name="CIA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MES_PROC" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ANO_PROC" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_TIPO" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_DOC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CONSECUTIVO" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_DIG" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COD_AUX1" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_AUX2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SISTEMA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CAMBIO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="COSTO_L" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="COSTO_E" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BRUTO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BRUTO_EX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BRUTO_GR" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMP_1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMP_2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMP_3" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMP_4" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DESCUENTO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DESCUENTO_EX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DESCUENTO_GR" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NETO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NETO_EX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NETO_GR" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NULO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOTAS" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="CIA_CXP" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="COD_PROV" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_CREDITO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="F_VENCE" Type="DateTime" Precision="3" />
+          <Property Name="REFERENCIA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ADI1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ADI2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ADI3" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ADI4" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ADI5" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="ADI6" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ADI7" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ADI8" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ADI9" Type="DateTime" Precision="3" />
+          <Property Name="ADI10" Type="DateTime" Precision="3" />
+          <Property Name="ADI11" Type="DateTime" Precision="3" />
+          <Property Name="COD_VEND" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="COD_RUTA" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="NIVEL_PRECIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COD_FPAG" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CIA_FAC" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="DETALLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MONEDA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IMPRIMIR_SERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CONFIRMADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="USER_CONFIRMA" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="DIA_CONFIRMA" Type="DateTime" Precision="3" />
+          <Property Name="STATUS_ENT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MOTIVO" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="X" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Y" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BMS_DATA_DENTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="INV_GARA" EntityType="Self.INV_GARA" />
+          <EntitySet Name="INV_MOV1" EntityType="Self.INV_MOV1" />
+          <EntitySet Name="INV_PROD" EntityType="BMS_DATA_DENTModel.INV_PROD" />
+          <EntitySet Name="SGA_PERMISOS" EntityType="BMS_DATA_DENTModel.SGA_PERMISOS" />
+          <EntitySet Name="SGA_ROLES" EntityType="BMS_DATA_DENTModel.SGA_ROLES" />
+          <EntitySet Name="SGA_ROLES_PERMISOS" EntityType="BMS_DATA_DENTModel.SGA_ROLES_PERMISOS" />
+          <EntitySet Name="SGA_USUARIOS" EntityType="BMS_DATA_DENTModel.SGA_USUARIOS" />
+          <AssociationSet Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1" Association="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1">
+            <End Role="SGA_PERMISOS" EntitySet="SGA_PERMISOS" />
+            <End Role="SGA_ROLES_PERMISOS" EntitySet="SGA_ROLES_PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS" Association="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS">
+            <End Role="SGA_ROLES" EntitySet="SGA_ROLES" />
+            <End Role="SGA_ROLES_PERMISOS" EntitySet="SGA_ROLES_PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SGA_USUARIOS_SGA_ROLES" Association="BMS_DATA_DENTModel.FK_SGA_USUARIOS_SGA_ROLES">
+            <End Role="SGA_ROLES" EntitySet="SGA_ROLES" />
+            <End Role="SGA_USUARIOS" EntitySet="SGA_USUARIOS" />
+          </AssociationSet>
+          <EntitySet Name="INV_MOVS" EntityType="BMS_DATA_DENTModel.INV_MOVS" />
+          <EntitySet Name="SGA_BITACORA_TICKET" EntityType="BMS_DATA_DENTModel.SGA_BITACORA_TICKET" />
+          <FunctionImport Name="SGA_STATUS_SERIES" ReturnType="Collection(String)">
+            <Parameter Name="p_serie_validar" Mode="In" Type="String" />
+            <Parameter Name="p_num_ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SGA_AFILIADOS" EntityType="BMS_DATA_DENTModel.SGA_AFILIADOS" />
+          <EntitySet Name="WEB_Canton" EntityType="BMS_DATA_DENTModel.WEB_Canton" />
+          <EntitySet Name="WEB_Distrito" EntityType="BMS_DATA_DENTModel.WEB_Distrito" />
+          <EntitySet Name="WEB_Provincia" EntityType="BMS_DATA_DENTModel.WEB_Provincia" />
+          <EntitySet Name="SGA_BITACORA_SERIE" EntityType="BMS_DATA_DENTModel.SGA_BITACORA_SERIE" />
+          <FunctionImport Name="SGA_ACTUALIZAR_ESTATUS_PRODUCTO_AFILIADO">
+            <Parameter Name="num_afiliado" Mode="In" Type="String" />
+            <Parameter Name="serie_consecutivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_BUSQUEDA_TICKET" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_BUSQUEDA_TICKET_Result)">
+            <Parameter Name="BUSQUEDA" Mode="In" Type="String" />
+            <Parameter Name="PARAMETRO" Mode="In" Type="String" />
+            <Parameter Name="ESTATUS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SGA_CAMBIAR_AFILIADO">
+            <Parameter Name="OLD_AFILIADO" Mode="In" Type="String" />
+            <Parameter Name="N_AFILIADO" Mode="In" Type="String" />
+            <Parameter Name="CONTACTO" Mode="In" Type="String" />
+            <Parameter Name="COMERCIO" Mode="In" Type="String" />
+            <Parameter Name="TELEFONO" Mode="In" Type="String" />
+            <Parameter Name="PROVINCIA" Mode="In" Type="String" />
+            <Parameter Name="CANTON" Mode="In" Type="String" />
+            <Parameter Name="DISTRITO" Mode="In" Type="String" />
+            <Parameter Name="DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="REFERENCIA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_TICKETS_AFILIADO" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_TICKETS_AFILIADO_Result)">
+          <Parameter Name="N_AFILIADO2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_BUSQUEDA_SERIE" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_BUSQUEDA_SERIE_Result)">
+          <Parameter Name="BUSQUEDA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_HISTORIAL_SERIE" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_HISTORIAL_SERIE_Result1)">
+          <Parameter Name="SERIAL" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_OBTENER_RESUMEN_TICKETS" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_OBTENER_RESUMEN_TICKETS_Result)">
+            <Parameter Name="cod_tec" Mode="In" Type="String" />
+            <Parameter Name="dias_h" Mode="In" Type="Int32" />
+            <Parameter Name="parametro" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SGA_EXEPCIONES" EntityType="BMS_DATA_DENTModel.SGA_EXEPCIONES" />
+          <FunctionImport Name="F_INVENTARIO_CREDOMATIC" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_INVENTARIO_CREDOMATIC_Result)">
+            <Parameter Name="MES" Mode="In" Type="String" />
+            <Parameter Name="ANO" Mode="In" Type="String" />
+            <Parameter Name="PARAMETRO" Mode="In" Type="String" />
+            <Parameter Name="P_CONSULTA" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="INV_TECN" EntityType="BMS_DATA_DENTModel.INV_TECN" />
+          <EntitySet Name="INV_GARV" EntityType="BMS_DATA_DENTModel.INV_GARV" />
+          <FunctionImport Name="F_PRODUCTOS_INSTALADOS" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_PRODUCTOS_INSTALADOS_Result)">
+            <Parameter Name="F_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="F_FIN" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="SGA_CATEGORY_PRODUCT" EntityType="BMS_DATA_DENTModel.SGA_CATEGORY_PRODUCT" />
+          <FunctionImport Name="F_REPORTE_MANTENIMIENTO_AFILIADOS" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_REPORTE_MANTENIMIENTO_AFILIADOS_Result)">
+            <Parameter Name="F_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="F_FIN" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="INV_DANOS" EntityType="BMS_DATA_DENTModel.INV_DANOS" />
+          <FunctionImport Name="F_INVENTARIO_AFILIADO" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_INVENTARIO_AFILIADO_Result)">
+          <Parameter Name="n_afiliado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_MOVIMIENTOS_POR_PRODUCTOS" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_MOVIMIENTOS_POR_PRODUCTOS_Result)">
+            <Parameter Name="CIA" Mode="In" Type="String" />
+            <Parameter Name="F_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="F_FIN" Mode="In" Type="DateTime" />
+            <Parameter Name="CATEGORIA" Mode="In" Type="String" />
+            <Parameter Name="MOVIMIENTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_AFILIADOS_INSTALACIONES" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_AFILIADOS_INSTALACIONES_Result)">
+            <Parameter Name="F_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="F_FIN" Mode="In" Type="DateTime" />
+            <Parameter Name="STATUS" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SGA_CAMBIO_AFILIADO" EntityType="BMS_DATA_DENTModel.SGA_CAMBIO_AFILIADO" />
+          <FunctionImport Name="F_SGA_PRODUCTOS_POR_CLIENTE" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_SGA_PRODUCTOS_POR_CLIENTE_Result)" />
+          <FunctionImport Name="F_SGA_AFILIADOS_SIN_MANTENIMIENTO" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_SGA_AFILIADOS_SIN_MANTENIMIENTO_Result)">
+          <Parameter Name="MESES" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SGA_ESTADO_PRODUCTOS" EntityType="BMS_DATA_DENTModel.SGA_ESTADO_PRODUCTOS" />
+          <FunctionImport Name="F_BUSQUEDA_AFILIADO" IsComposable="true" ReturnType="Collection(BMS_DATA_DENTModel.F_BUSQUEDA_AFILIADO_Result)">
+            <Parameter Name="BUSQUEDA" Mode="In" Type="String" />
+            <Parameter Name="PARAMETRO" Mode="In" Type="String" />
+            <Parameter Name="ESTATUS" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SGA_EVIDENCIA_TICKET" EntityType="BMS_DATA_DENTModel.SGA_EVIDENCIA_TICKET" />
+          </EntityContainer>
+        <EntityType Name="INV_PROD">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_PROD" />
+          </Key>
+          <Property Name="CIA" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="COD_PROD" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="COD_FAMI" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="COD_SUBF" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="COD_DEPA" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="COD_ADIC" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="NOMBRE_1" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="NOMBRE_2" Type="String" MaxLength="330" FixedLength="false" Unicode="false" />
+          <Property Name="LOCALIZACION" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="UNI_MED" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="VOLUMEN" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="PESO" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="ULTIMO_D" Type="DateTime" Precision="3" />
+          <Property Name="ULTIMO_H" Type="DateTime" Precision="3" />
+          <Property Name="IMP_1" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IMP_2" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IMP_3" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IMP_4" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CUENTA_D" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CUENTA_H" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ACTIVO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DESC_MAX" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_MIN" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P1" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P2" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P3" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P4" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P5" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P6" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P7" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P8" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UTIL_P9" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_1" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_2" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_3" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_4" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_5" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_6" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_7" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_8" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRECIO_9" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MINIMO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MAXIMO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PEDIDOS" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="COMPRAS" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ULTIMO_L" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ULTIMO_E" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SERIE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="GARANTIA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MESES_GARANTIA" Type="Int32" />
+          <Property Name="ULT_COD_PROV" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="CANTIDAD_DIAS" Type="Int32" />
+          <Property Name="LOCALIZACION_2" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PROMOCION" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DESC_PROM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PROM_DEL" Type="DateTime" Precision="3" />
+          <Property Name="PROM_AL" Type="DateTime" Precision="3" />
+          <Property Name="IMP_PART" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="PRODUCIR_1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRODUCIR_2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRODUCIR_3" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="COD_UBIC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PEDIR" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ULTIMO_FOB" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="COD_BARRAS" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="NOTAS" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="ID_ABC" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID_INDICADOR" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FOTO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="COMPRAS_MOVIL" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="COMISION" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          </EntityType>
+        <EntityType Name="SGA_PERMISOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDENTIFICADOR" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORIA" Type="Int32" />
+          <NavigationProperty Name="SGA_ROLES_PERMISOS" Relationship="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1" FromRole="SGA_PERMISOS" ToRole="SGA_ROLES_PERMISOS" />
+        </EntityType>
+        <EntityType Name="SGA_ROLES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_ROL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERMANENTE" Type="Boolean" />
+          <NavigationProperty Name="SGA_ROLES_PERMISOS" Relationship="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS" FromRole="SGA_ROLES" ToRole="SGA_ROLES_PERMISOS" />
+          <NavigationProperty Name="SGA_USUARIOS" Relationship="BMS_DATA_DENTModel.FK_SGA_USUARIOS_SGA_ROLES" FromRole="SGA_ROLES" ToRole="SGA_USUARIOS" />
+        </EntityType>
+        <EntityType Name="SGA_ROLES_PERMISOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PERMISO" Type="Int32" Nullable="false" />
+          <Property Name="ID_ROL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SGA_PERMISOS" Relationship="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1" FromRole="SGA_ROLES_PERMISOS" ToRole="SGA_PERMISOS" />
+          <NavigationProperty Name="SGA_ROLES" Relationship="BMS_DATA_DENTModel.FK_SGA_ROLES_PERMISOS_SGA_PERMISOS" FromRole="SGA_ROLES_PERMISOS" ToRole="SGA_ROLES" />
+        </EntityType>
+        <EntityType Name="SGA_USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ROL" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SGA_ROLES" Relationship="BMS_DATA_DENTModel.FK_SGA_USUARIOS_SGA_ROLES" FromRole="SGA_USUARIOS" ToRole="SGA_ROLES" />
+          <Property Name="USER_LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COD_TECNICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS1">
+          <End Type="BMS_DATA_DENTModel.SGA_PERMISOS" Role="SGA_PERMISOS" Multiplicity="1" />
+          <End Type="BMS_DATA_DENTModel.SGA_ROLES_PERMISOS" Role="SGA_ROLES_PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_PERMISOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_ROLES_PERMISOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SGA_ROLES_PERMISOS_SGA_PERMISOS">
+          <End Type="BMS_DATA_DENTModel.SGA_ROLES" Role="SGA_ROLES" Multiplicity="1" />
+          <End Type="BMS_DATA_DENTModel.SGA_ROLES_PERMISOS" Role="SGA_ROLES_PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_ROLES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_ROLES_PERMISOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SGA_USUARIOS_SGA_ROLES">
+          <End Type="BMS_DATA_DENTModel.SGA_ROLES" Role="SGA_ROLES" Multiplicity="1" />
+          <End Type="BMS_DATA_DENTModel.SGA_USUARIOS" Role="SGA_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SGA_ROLES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SGA_USUARIOS">
+              <PropertyRef Name="ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="INV_MOVS">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TIPO" />
+            <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="COD_PROD" />
+            <PropertyRef Name="CONSECUTIVO" />
+          </Key>
+          <Property Name="CIA" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="COD_TIPO" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_DOC" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="COD_PROD" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="CONSECUTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIE" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="NOTAS" Type="String" Nullable="false" MaxLength="90" FixedLength="true" Unicode="false" />
+          <Property Name="PEDIDO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SGA_BITACORA_TICKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TICKET" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_MOVIMIENTO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AVERIA_REPORTADA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DIAGNOSTICO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUCION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EXPOSICION_EQUIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPOSICION_EQUIPO_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MANTENIMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRUEBAS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_CONEXION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETALLE_INSTALACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPOSICION_EQUIPO_VISITA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OTROS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_DIG" Type="DateTime" Precision="3" />
+          <Property Name="EXTRA_1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EXTRA_2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EXTRA_3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SGA_AFILIADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="N_AFILIADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_NEGOCIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="N_COD_PROV" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="N_COD_CANT" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="N_COD_DIST" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ACTUALIZADO" Type="Boolean" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <Property Name="ANTIGUO_N_AFILIADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="EXTRA_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXTRA_2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_INACTIVACION" Type="DateTime" Precision="3" />
+          <Property Name="INVENTARIO_ACTUALIZADO" Type="Boolean" />
+          <Property Name="ESTATUS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WEB_Canton">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+            <PropertyRef Name="idCanton" />
+          </Key>
+          <Property Name="idProvincia" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="idCanton" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="nombreCanton" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WEB_Distrito">
+          <Key>
+            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idProvincia" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="idCanton" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="idDistrito" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="nombreDistrito" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WEB_Provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="nombreProvincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_BUSQUEDA_AFILIADO_Result1">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIRECCION_1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DIRECCION_2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="NOMBRE_NEGOCIO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_PROV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_CANT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_DIST" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ACTUALIZADO" Nullable="true" />
+          <Property Type="Boolean" Name="ACTIVO" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="SGA_BITACORA_SERIE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIAL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DETALLE" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RESPONSABLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_TICKET" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_BUSQUEDA_TICKET_Result">
+          <Property Type="String" Name="ID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TIPO" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="USUARIO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TECNICO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CONTACTO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOCAL_N" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROBLEMA" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="DIA_VISITA" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="F_TICKETS_AFILIADO_Result">
+          <Property Type="String" Name="ID" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="USUARIO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ESTATUS" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TECNICO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CONTACTO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="LOCAL_N" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PROBLEMA" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PROVINCIA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CANTON" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DISTRITO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DIA_VISITA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TIPO" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="F_BUSQUEDA_SERIE_Result">
+          <Property Type="String" Name="CONSECUTIVO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERIE" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="USUARIO" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="F_HISTORIAL_SERIE_Result">
+          <Property Type="String" Name="MOVIMIENTO" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RESPONSABLE" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DETALLE" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="F_HISTORIAL_SERIE_Result1">
+          <Property Type="String" Name="MOVIMIENTO" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RESPONSABLE" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DETALLE" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TIQUETE" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NOTAS" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="F_OBTENER_RESUMEN_TICKETS_Result">
+          <Property Type="String" Name="DIA" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="INSTALADO" Nullable="true" />
+          <Property Type="Int32" Name="VISITADO" Nullable="true" />
+          <Property Type="Int32" Name="RETIRADO" Nullable="true" />
+          <Property Type="Int32" Name="TOTAL" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="SGA_EXEPCIONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODULO" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DETALLE" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="F_INVENTARIO_CREDOMATIC_Result">
+          <Property Type="String" Name="COD_PROD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="COMPRADOS" Nullable="true" />
+          <Property Type="Int32" Name="INSTALADOS" Nullable="true" />
+          <Property Type="Int32" Name="RETIRADOS" Nullable="true" />
+          <Property Type="Int32" Name="DESECHADO" Nullable="true" />
+          <Property Type="Int32" Name="REACONDI" Nullable="true" />
+          <Property Type="Int32" Name="SALDO_INI" Nullable="true" />
+          <Property Type="Int32" Name="SALDO_FIN" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="INV_TECN">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="COD_TECN" />
+          </Key>
+          <Property Name="CIA" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="COD_TECN" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="DES_TECN" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="POR_COMI" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="INV_GARV">
+          <Key>
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="NUM_DOC_GARANTIA" />
+            <PropertyRef Name="SECUENCIA" />
+          </Key>
+          <Property Name="CIA" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_DOC_GARANTIA" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SECUENCIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA" Type="DateTime" Precision="3" />
+          <Property Name="HORA" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="DETALLE1" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="DETALLE2" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="DETALLE3" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="CONFIDENCIAL" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_PRODUCTOS_INSTALADOS_Result">
+          <Property Type="String" Name="REFERENCIA" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="SERIE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CATEGORIA" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="SGA_CATEGORY_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CATEGORIA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_REPORTE_MANTENIMIENTO_AFILIADOS_Result">
+          <Property Type="String" Name="ID_TICKET" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NOMBRE_NEGOCIO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="T_SERVICE" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TECNICO" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="INV_DANOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CIA" />
+            <PropertyRef Name="Descripcion" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_INVENTARIO_AFILIADO_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="COD_PROD" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="COD_TIPO" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SERIE" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CATEGORIA" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="F_MOVIMIENTOS_POR_PRODUCTOS_Result">
+          <Property Type="DateTime" Name="FECHA_MOVI" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NEGOCIO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TIPO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NUM_DOC" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="COD_PROD" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CATEGORIA" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PRODUCTO" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="SERIE" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="F_AFILIADOS_INSTALACIONES_Result">
+          <Property Type="String" Name="COMERCIO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CONTACTO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROVINCIA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AREA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EJECUTIVO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TIPO_SOF" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TIPO_INDU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LICENCIA" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FEC_INSTA" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FEC_COMP" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PAGO_MEN" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MOT_RETIRO" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FEC_RETIRO" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <EntityType Name="SGA_CAMBIO_AFILIADO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANTIGUO_AFILIADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUEVO_AFILIADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETALLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AFILIADO_INICIAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_SGA_PRODUCTOS_POR_CLIENTE_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="COD_CLIE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="COD_PROD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ID_SERIE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_SERIE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CATEGORIA" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="F_SGA_AFILIADOS_SIN_MANTENIMIENTO_Result">
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="NEGOCIO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PROVINCIA" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CANTON" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DISTRITO" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="SGA_ESTADO_PRODUCTOS">
+          <Key>
+            <PropertyRef Name="SERIE_CONSECUTIVO" />
+            <PropertyRef Name="COD_PROD" />
+            <PropertyRef Name="ID_BOLETA" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIE_CONSECUTIVO" Type="Int32" Nullable="false" />
+          <Property Name="COD_PROD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ID_BOLETA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="3" />
+          <Property Name="ACCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="F_BUSQUEDA_AFILIADO_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="N_AFILIADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DIRECCION_1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DIRECCION_2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="NOMBRE_NEGOCIO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_PROV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_CANT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="N_COD_DIST" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ACTUALIZADO" Nullable="true" />
+          <Property Type="Boolean" Name="ACTIVO" Nullable="true" />
+          <Property Type="String" Name="ACTIVO_V" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="SGA_EVIDENCIA_TICKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EXTENSION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MEMBERSHIP_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TICKET" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" Precision="3" />
+          <Property Name="ACTIVE" Type="Boolean" />
+          <Property Name="UPDATED" Type="DateTime" Precision="3" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BMS_DATA_DENTModelStoreContainer" CdmEntityContainer="BMS_DATA_DENTEntities">
+          <EntitySetMapping Name="INV_GARA">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_GARA">
+              <MappingFragment StoreEntitySet="INV_GARA">
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+                <ScalarProperty Name="NUM_DOC_GARANTIA" ColumnName="NUM_DOC_GARANTIA" />
+                <ScalarProperty Name="FECHA_INGRESO" ColumnName="FECHA_INGRESO" />
+                <ScalarProperty Name="TIPO_GARANTIA" ColumnName="TIPO_GARANTIA" />
+                <ScalarProperty Name="COD_CLIE" ColumnName="COD_CLIE" />
+                <ScalarProperty Name="NOTA_1" ColumnName="NOTA_1" />
+                <ScalarProperty Name="CODIGO_BOLETA" ColumnName="CODIGO_BOLETA" />
+                <ScalarProperty Name="TECNICO" ColumnName="TECNICO" />
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+                <ScalarProperty Name="PROBLEMA_1" ColumnName="PROBLEMA_1" />
+                <ScalarProperty Name="PROBLEMA_2" ColumnName="PROBLEMA_2" />
+                <ScalarProperty Name="PROBLEMA_3" ColumnName="PROBLEMA_3" />
+                <ScalarProperty Name="PROBLEMA_4" ColumnName="PROBLEMA_4" />
+                <ScalarProperty Name="SOLUCION_1" ColumnName="SOLUCION_1" />
+                <ScalarProperty Name="SOLUCION_2" ColumnName="SOLUCION_2" />
+                <ScalarProperty Name="SOLUCION_3" ColumnName="SOLUCION_3" />
+                <ScalarProperty Name="SOLUCION_4" ColumnName="SOLUCION_4" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="RMA" ColumnName="RMA" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="HORA" ColumnName="HORA" />
+                <ScalarProperty Name="FECHA_REPARADO" ColumnName="FECHA_REPARADO" />
+                <ScalarProperty Name="RECIBE" ColumnName="RECIBE" />
+                <ScalarProperty Name="ORDEN_COMPRA" ColumnName="ORDEN_COMPRA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="FACTURADO" ColumnName="FACTURADO" />
+                <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+                <ScalarProperty Name="MANO_OBRA" ColumnName="MANO_OBRA" />
+                <ScalarProperty Name="MATERIALES" ColumnName="MATERIALES" />
+                <ScalarProperty Name="N_COORDINA" ColumnName="N_COORDINA" />
+                <ScalarProperty Name="N_EJECUTIVO" ColumnName="N_EJECUTIVO" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="N_CLIENTE" ColumnName="N_CLIENTE" />
+                <ScalarProperty Name="N_DIRECCION" ColumnName="N_DIRECCION" />
+                <ScalarProperty Name="N_HORA_P" ColumnName="N_HORA_P" />
+                <ScalarProperty Name="N_FECHA_P" ColumnName="N_FECHA_P" />
+                <ScalarProperty Name="N_CANTIDAD" ColumnName="N_CANTIDAD" />
+                <ScalarProperty Name="N_TECNICO" ColumnName="N_TECNICO" />
+                <ScalarProperty Name="N_TIPO" ColumnName="N_TIPO" />
+                <ScalarProperty Name="N_INTERNET" ColumnName="N_INTERNET" />
+                <ScalarProperty Name="N_MUEBLE" ColumnName="N_MUEBLE" />
+                <ScalarProperty Name="N_ELECTRICIDAD" ColumnName="N_ELECTRICIDAD" />
+                <ScalarProperty Name="N_COD_PROV" ColumnName="N_COD_PROV" />
+                <ScalarProperty Name="N_COD_CANT" ColumnName="N_COD_CANT" />
+                <ScalarProperty Name="N_COD_DIST" ColumnName="N_COD_DIST" />
+                <ScalarProperty Name="TIPO_EVENTO" ColumnName="TIPO_EVENTO" />
+                <ScalarProperty Name="FECHA_DIAGNOSTICADO" ColumnName="FECHA_DIAGNOSTICADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_MOV1">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_MOV1">
+              <MappingFragment StoreEntitySet="INV_MOV1">
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+                <ScalarProperty Name="MES_PROC" ColumnName="MES_PROC" />
+                <ScalarProperty Name="ANO_PROC" ColumnName="ANO_PROC" />
+                <ScalarProperty Name="COD_TIPO" ColumnName="COD_TIPO" />
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="FECHA_DIG" ColumnName="FECHA_DIG" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="COD_AUX1" ColumnName="COD_AUX1" />
+                <ScalarProperty Name="COD_AUX2" ColumnName="COD_AUX2" />
+                <ScalarProperty Name="SISTEMA" ColumnName="SISTEMA" />
+                <ScalarProperty Name="CAMBIO" ColumnName="CAMBIO" />
+                <ScalarProperty Name="COSTO_L" ColumnName="COSTO_L" />
+                <ScalarProperty Name="COSTO_E" ColumnName="COSTO_E" />
+                <ScalarProperty Name="BRUTO" ColumnName="BRUTO" />
+                <ScalarProperty Name="BRUTO_EX" ColumnName="BRUTO_EX" />
+                <ScalarProperty Name="BRUTO_GR" ColumnName="BRUTO_GR" />
+                <ScalarProperty Name="IMP_1" ColumnName="IMP_1" />
+                <ScalarProperty Name="IMP_2" ColumnName="IMP_2" />
+                <ScalarProperty Name="IMP_3" ColumnName="IMP_3" />
+                <ScalarProperty Name="IMP_4" ColumnName="IMP_4" />
+                <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
+                <ScalarProperty Name="DESCUENTO_EX" ColumnName="DESCUENTO_EX" />
+                <ScalarProperty Name="DESCUENTO_GR" ColumnName="DESCUENTO_GR" />
+                <ScalarProperty Name="NETO" ColumnName="NETO" />
+                <ScalarProperty Name="NETO_EX" ColumnName="NETO_EX" />
+                <ScalarProperty Name="NETO_GR" ColumnName="NETO_GR" />
+                <ScalarProperty Name="NULO" ColumnName="NULO" />
+                <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+                <ScalarProperty Name="CIA_CXP" ColumnName="CIA_CXP" />
+                <ScalarProperty Name="COD_PROV" ColumnName="COD_PROV" />
+                <ScalarProperty Name="TIPO_CREDITO" ColumnName="TIPO_CREDITO" />
+                <ScalarProperty Name="F_VENCE" ColumnName="F_VENCE" />
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+                <ScalarProperty Name="ADI1" ColumnName="ADI1" />
+                <ScalarProperty Name="ADI2" ColumnName="ADI2" />
+                <ScalarProperty Name="ADI3" ColumnName="ADI3" />
+                <ScalarProperty Name="ADI4" ColumnName="ADI4" />
+                <ScalarProperty Name="ADI5" ColumnName="ADI5" />
+                <ScalarProperty Name="ADI6" ColumnName="ADI6" />
+                <ScalarProperty Name="ADI7" ColumnName="ADI7" />
+                <ScalarProperty Name="ADI8" ColumnName="ADI8" />
+                <ScalarProperty Name="ADI9" ColumnName="ADI9" />
+                <ScalarProperty Name="ADI10" ColumnName="ADI10" />
+                <ScalarProperty Name="ADI11" ColumnName="ADI11" />
+                <ScalarProperty Name="COD_VEND" ColumnName="COD_VEND" />
+                <ScalarProperty Name="COD_RUTA" ColumnName="COD_RUTA" />
+                <ScalarProperty Name="NIVEL_PRECIO" ColumnName="NIVEL_PRECIO" />
+                <ScalarProperty Name="COD_FPAG" ColumnName="COD_FPAG" />
+                <ScalarProperty Name="CIA_FAC" ColumnName="CIA_FAC" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+                <ScalarProperty Name="IMPRIMIR_SERV" ColumnName="IMPRIMIR_SERV" />
+                <ScalarProperty Name="CONFIRMADO" ColumnName="CONFIRMADO" />
+                <ScalarProperty Name="USER_CONFIRMA" ColumnName="USER_CONFIRMA" />
+                <ScalarProperty Name="DIA_CONFIRMA" ColumnName="DIA_CONFIRMA" />
+                <ScalarProperty Name="STATUS_ENT" ColumnName="STATUS_ENT" />
+                <ScalarProperty Name="MOTIVO" ColumnName="MOTIVO" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_PROD">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_PROD">
+              <MappingFragment StoreEntitySet="INV_PROD">
+                <ScalarProperty Name="COMISION" ColumnName="COMISION" />
+                <ScalarProperty Name="COMPRAS_MOVIL" ColumnName="COMPRAS_MOVIL" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ID_INDICADOR" ColumnName="ID_INDICADOR" />
+                <ScalarProperty Name="ID_ABC" ColumnName="ID_ABC" />
+                <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+                <ScalarProperty Name="COD_BARRAS" ColumnName="COD_BARRAS" />
+                <ScalarProperty Name="ULTIMO_FOB" ColumnName="ULTIMO_FOB" />
+                <ScalarProperty Name="PEDIR" ColumnName="PEDIR" />
+                <ScalarProperty Name="COD_UBIC" ColumnName="COD_UBIC" />
+                <ScalarProperty Name="PRODUCIR_3" ColumnName="PRODUCIR_3" />
+                <ScalarProperty Name="PRODUCIR_2" ColumnName="PRODUCIR_2" />
+                <ScalarProperty Name="PRODUCIR_1" ColumnName="PRODUCIR_1" />
+                <ScalarProperty Name="IMP_PART" ColumnName="IMP_PART" />
+                <ScalarProperty Name="PROM_AL" ColumnName="PROM_AL" />
+                <ScalarProperty Name="PROM_DEL" ColumnName="PROM_DEL" />
+                <ScalarProperty Name="DESC_PROM" ColumnName="DESC_PROM" />
+                <ScalarProperty Name="PROMOCION" ColumnName="PROMOCION" />
+                <ScalarProperty Name="LOCALIZACION_2" ColumnName="LOCALIZACION_2" />
+                <ScalarProperty Name="CANTIDAD_DIAS" ColumnName="CANTIDAD_DIAS" />
+                <ScalarProperty Name="ULT_COD_PROV" ColumnName="ULT_COD_PROV" />
+                <ScalarProperty Name="MESES_GARANTIA" ColumnName="MESES_GARANTIA" />
+                <ScalarProperty Name="GARANTIA" ColumnName="GARANTIA" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="ULTIMO_E" ColumnName="ULTIMO_E" />
+                <ScalarProperty Name="ULTIMO_L" ColumnName="ULTIMO_L" />
+                <ScalarProperty Name="COMPRAS" ColumnName="COMPRAS" />
+                <ScalarProperty Name="PEDIDOS" ColumnName="PEDIDOS" />
+                <ScalarProperty Name="MAXIMO" ColumnName="MAXIMO" />
+                <ScalarProperty Name="MINIMO" ColumnName="MINIMO" />
+                <ScalarProperty Name="PRECIO_9" ColumnName="PRECIO_9" />
+                <ScalarProperty Name="PRECIO_8" ColumnName="PRECIO_8" />
+                <ScalarProperty Name="PRECIO_7" ColumnName="PRECIO_7" />
+                <ScalarProperty Name="PRECIO_6" ColumnName="PRECIO_6" />
+                <ScalarProperty Name="PRECIO_5" ColumnName="PRECIO_5" />
+                <ScalarProperty Name="PRECIO_4" ColumnName="PRECIO_4" />
+                <ScalarProperty Name="PRECIO_3" ColumnName="PRECIO_3" />
+                <ScalarProperty Name="PRECIO_2" ColumnName="PRECIO_2" />
+                <ScalarProperty Name="PRECIO_1" ColumnName="PRECIO_1" />
+                <ScalarProperty Name="UTIL_P9" ColumnName="UTIL_P9" />
+                <ScalarProperty Name="UTIL_P8" ColumnName="UTIL_P8" />
+                <ScalarProperty Name="UTIL_P7" ColumnName="UTIL_P7" />
+                <ScalarProperty Name="UTIL_P6" ColumnName="UTIL_P6" />
+                <ScalarProperty Name="UTIL_P5" ColumnName="UTIL_P5" />
+                <ScalarProperty Name="UTIL_P4" ColumnName="UTIL_P4" />
+                <ScalarProperty Name="UTIL_P3" ColumnName="UTIL_P3" />
+                <ScalarProperty Name="UTIL_P2" ColumnName="UTIL_P2" />
+                <ScalarProperty Name="UTIL_P1" ColumnName="UTIL_P1" />
+                <ScalarProperty Name="UTIL_MIN" ColumnName="UTIL_MIN" />
+                <ScalarProperty Name="DESC_MAX" ColumnName="DESC_MAX" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="CUENTA_H" ColumnName="CUENTA_H" />
+                <ScalarProperty Name="CUENTA_D" ColumnName="CUENTA_D" />
+                <ScalarProperty Name="IMP_4" ColumnName="IMP_4" />
+                <ScalarProperty Name="IMP_3" ColumnName="IMP_3" />
+                <ScalarProperty Name="IMP_2" ColumnName="IMP_2" />
+                <ScalarProperty Name="IMP_1" ColumnName="IMP_1" />
+                <ScalarProperty Name="ULTIMO_H" ColumnName="ULTIMO_H" />
+                <ScalarProperty Name="ULTIMO_D" ColumnName="ULTIMO_D" />
+                <ScalarProperty Name="PESO" ColumnName="PESO" />
+                <ScalarProperty Name="VOLUMEN" ColumnName="VOLUMEN" />
+                <ScalarProperty Name="UNI_MED" ColumnName="UNI_MED" />
+                <ScalarProperty Name="LOCALIZACION" ColumnName="LOCALIZACION" />
+                <ScalarProperty Name="NOMBRE_2" ColumnName="NOMBRE_2" />
+                <ScalarProperty Name="NOMBRE_1" ColumnName="NOMBRE_1" />
+                <ScalarProperty Name="COD_ADIC" ColumnName="COD_ADIC" />
+                <ScalarProperty Name="COD_DEPA" ColumnName="COD_DEPA" />
+                <ScalarProperty Name="COD_SUBF" ColumnName="COD_SUBF" />
+                <ScalarProperty Name="COD_FAMI" ColumnName="COD_FAMI" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_PERMISOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_PERMISOS">
+              <MappingFragment StoreEntitySet="SGA_PERMISOS">
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="IDENTIFICADOR" ColumnName="IDENTIFICADOR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_ROLES">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_ROLES">
+              <MappingFragment StoreEntitySet="SGA_ROLES">
+                <ScalarProperty Name="PERMANENTE" ColumnName="PERMANENTE" />
+                <ScalarProperty Name="NOMBRE_ROL" ColumnName="NOMBRE_ROL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_ROLES_PERMISOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_ROLES_PERMISOS">
+              <MappingFragment StoreEntitySet="SGA_ROLES_PERMISOS">
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_USUARIOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_USUARIOS">
+              <MappingFragment StoreEntitySet="SGA_USUARIOS">
+                <ScalarProperty Name="COD_TECNICO" ColumnName="COD_TECNICO" />
+                <ScalarProperty Name="USER_LOGIN" ColumnName="USER_LOGIN" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="ROL" ColumnName="ROL" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_MOVS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_MOVS">
+              <MappingFragment StoreEntitySet="INV_MOVS">
+                <ScalarProperty Name="PEDIDO" ColumnName="PEDIDO" />
+                <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="COD_TIPO" ColumnName="COD_TIPO" />
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_BITACORA_TICKET">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_BITACORA_TICKET">
+              <MappingFragment StoreEntitySet="SGA_BITACORA_TICKET">
+                <ScalarProperty Name="EXTRA_3" ColumnName="EXTRA_3" />
+                <ScalarProperty Name="EXTRA_2" ColumnName="EXTRA_2" />
+                <ScalarProperty Name="EXTRA_1" ColumnName="EXTRA_1" />
+                <ScalarProperty Name="FECHA_DIG" ColumnName="FECHA_DIG" />
+                <ScalarProperty Name="OTROS" ColumnName="OTROS" />
+                <ScalarProperty Name="EXPOSICION_EQUIPO_VISITA" ColumnName="EXPOSICION_EQUIPO_VISITA" />
+                <ScalarProperty Name="DETALLE_INSTALACION" ColumnName="DETALLE_INSTALACION" />
+                <ScalarProperty Name="TIPO_CONEXION" ColumnName="TIPO_CONEXION" />
+                <ScalarProperty Name="PRUEBAS" ColumnName="PRUEBAS" />
+                <ScalarProperty Name="MANTENIMIENTO" ColumnName="MANTENIMIENTO" />
+                <ScalarProperty Name="EXPOSICION_EQUIPO_2" ColumnName="EXPOSICION_EQUIPO_2" />
+                <ScalarProperty Name="EXPOSICION_EQUIPO" ColumnName="EXPOSICION_EQUIPO" />
+                <ScalarProperty Name="SOLUCION" ColumnName="SOLUCION" />
+                <ScalarProperty Name="DIAGNOSTICO" ColumnName="DIAGNOSTICO" />
+                <ScalarProperty Name="AVERIA_REPORTADA" ColumnName="AVERIA_REPORTADA" />
+                <ScalarProperty Name="TIPO_MOVIMIENTO" ColumnName="TIPO_MOVIMIENTO" />
+                <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SGA_STATUS_SERIES" FunctionName="BMS_DATA_DENTModel.Store.SGA_STATUS_SERIES" />
+          <EntitySetMapping Name="SGA_AFILIADOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_AFILIADOS">
+              <MappingFragment StoreEntitySet="SGA_AFILIADOS">
+                <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+                <ScalarProperty Name="INVENTARIO_ACTUALIZADO" ColumnName="INVENTARIO_ACTUALIZADO" />
+                <ScalarProperty Name="FECHA_INACTIVACION" ColumnName="FECHA_INACTIVACION" />
+                <ScalarProperty Name="EXTRA_2" ColumnName="EXTRA_2" />
+                <ScalarProperty Name="EXTRA_1" ColumnName="EXTRA_1" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ANTIGUO_N_AFILIADO" ColumnName="ANTIGUO_N_AFILIADO" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="ACTUALIZADO" ColumnName="ACTUALIZADO" />
+                <ScalarProperty Name="N_COD_DIST" ColumnName="N_COD_DIST" />
+                <ScalarProperty Name="N_COD_CANT" ColumnName="N_COD_CANT" />
+                <ScalarProperty Name="N_COD_PROV" ColumnName="N_COD_PROV" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="NOMBRE_NEGOCIO" ColumnName="NOMBRE_NEGOCIO" />
+                <ScalarProperty Name="DIRECCION_2" ColumnName="DIRECCION_2" />
+                <ScalarProperty Name="DIRECCION_1" ColumnName="DIRECCION_1" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEB_Canton">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.WEB_Canton">
+              <MappingFragment StoreEntitySet="WEB_Canton">
+                <ScalarProperty Name="nombreCanton" ColumnName="nombreCanton" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEB_Distrito">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.WEB_Distrito">
+              <MappingFragment StoreEntitySet="WEB_Distrito">
+                <ScalarProperty Name="nombreDistrito" ColumnName="nombreDistrito" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEB_Provincia">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.WEB_Provincia">
+              <MappingFragment StoreEntitySet="WEB_Provincia">
+                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SGA_BITACORA_SERIE">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_BITACORA_SERIE">
+              <MappingFragment StoreEntitySet="SGA_BITACORA_SERIE">
+                <ScalarProperty Name="NUM_TICKET" ColumnName="NUM_TICKET" />
+                <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="SERIAL" ColumnName="SERIAL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SGA_ACTUALIZAR_ESTATUS_PRODUCTO_AFILIADO" FunctionName="BMS_DATA_DENTModel.Store.SGA_ACTUALIZAR_ESTATUS_PRODUCTO_AFILIADO" />
+          <FunctionImportMapping FunctionImportName="F_BUSQUEDA_TICKET" FunctionName="BMS_DATA_DENTModel.Store.F_BUSQUEDA_TICKET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_BUSQUEDA_TICKET_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="TECNICO" ColumnName="TECNICO" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="LOCAL_N" ColumnName="LOCAL_N" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="PROBLEMA" ColumnName="PROBLEMA" />
+                <ScalarProperty Name="DIA_VISITA" ColumnName="DIA_VISITA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SGA_CAMBIAR_AFILIADO" FunctionName="BMS_DATA_DENTModel.Store.SGA_CAMBIAR_AFILIADO" />
+          <FunctionImportMapping FunctionImportName="F_TICKETS_AFILIADO" FunctionName="BMS_DATA_DENTModel.Store.F_TICKETS_AFILIADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_TICKETS_AFILIADO_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+                <ScalarProperty Name="TECNICO" ColumnName="TECNICO" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="LOCAL_N" ColumnName="LOCAL_N" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="PROBLEMA" ColumnName="PROBLEMA" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="CANTON" ColumnName="CANTON" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="DIA_VISITA" ColumnName="DIA_VISITA" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_BUSQUEDA_SERIE" FunctionName="BMS_DATA_DENTModel.Store.F_BUSQUEDA_SERIE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_BUSQUEDA_SERIE_Result">
+                <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_HISTORIAL_SERIE" FunctionName="BMS_DATA_DENTModel.Store.F_HISTORIAL_SERIE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_HISTORIAL_SERIE_Result1">
+                <ScalarProperty Name="MOVIMIENTO" ColumnName="MOVIMIENTO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="TIQUETE" ColumnName="TIQUETE" />
+                <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_OBTENER_RESUMEN_TICKETS" FunctionName="BMS_DATA_DENTModel.Store.F_OBTENER_RESUMEN_TICKETS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_OBTENER_RESUMEN_TICKETS_Result">
+                <ScalarProperty Name="DIA" ColumnName="DIA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="INSTALADO" ColumnName="INSTALADO" />
+                <ScalarProperty Name="VISITADO" ColumnName="VISITADO" />
+                <ScalarProperty Name="RETIRADO" ColumnName="RETIRADO" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SGA_EXEPCIONES">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_EXEPCIONES">
+              <MappingFragment StoreEntitySet="SGA_EXEPCIONES">
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="MODULO" ColumnName="MODULO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_INVENTARIO_CREDOMATIC" FunctionName="BMS_DATA_DENTModel.Store.F_INVENTARIO_CREDOMATIC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_INVENTARIO_CREDOMATIC_Result">
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="COMPRADOS" ColumnName="COMPRADOS" />
+                <ScalarProperty Name="INSTALADOS" ColumnName="INSTALADOS" />
+                <ScalarProperty Name="RETIRADOS" ColumnName="RETIRADOS" />
+                <ScalarProperty Name="DESECHADO" ColumnName="DESECHADO" />
+                <ScalarProperty Name="REACONDI" ColumnName="REACONDI" />
+                <ScalarProperty Name="SALDO_INI" ColumnName="SALDO_INI" />
+                <ScalarProperty Name="SALDO_FIN" ColumnName="SALDO_FIN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="INV_TECN">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_TECN">
+              <MappingFragment StoreEntitySet="INV_TECN">
+                <ScalarProperty Name="POR_COMI" ColumnName="POR_COMI" />
+                <ScalarProperty Name="DES_TECN" ColumnName="DES_TECN" />
+                <ScalarProperty Name="COD_TECN" ColumnName="COD_TECN" />
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_GARV">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_GARV">
+              <MappingFragment StoreEntitySet="INV_GARV">
+                <ScalarProperty Name="CONFIDENCIAL" ColumnName="CONFIDENCIAL" />
+                <ScalarProperty Name="DETALLE3" ColumnName="DETALLE3" />
+                <ScalarProperty Name="DETALLE2" ColumnName="DETALLE2" />
+                <ScalarProperty Name="DETALLE1" ColumnName="DETALLE1" />
+                <ScalarProperty Name="HORA" ColumnName="HORA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="SECUENCIA" ColumnName="SECUENCIA" />
+                <ScalarProperty Name="NUM_DOC_GARANTIA" ColumnName="NUM_DOC_GARANTIA" />
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_PRODUCTOS_INSTALADOS" FunctionName="BMS_DATA_DENTModel.Store.F_PRODUCTOS_INSTALADOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_PRODUCTOS_INSTALADOS_Result">
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SGA_CATEGORY_PRODUCT">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_CATEGORY_PRODUCT">
+              <MappingFragment StoreEntitySet="SGA_CATEGORY_PRODUCT">
+                <ScalarProperty Name="NOMBRE_CATEGORIA" ColumnName="NOMBRE_CATEGORIA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_REPORTE_MANTENIMIENTO_AFILIADOS" FunctionName="BMS_DATA_DENTModel.Store.F_REPORTE_MANTENIMIENTO_AFILIADOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_REPORTE_MANTENIMIENTO_AFILIADOS_Result">
+                <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
+                <ScalarProperty Name="NOMBRE_NEGOCIO" ColumnName="NOMBRE_NEGOCIO" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="T_SERVICE" ColumnName="T_SERVICE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TECNICO" ColumnName="TECNICO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="INV_DANOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.INV_DANOS">
+              <MappingFragment StoreEntitySet="INV_DANOS">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CIA" ColumnName="CIA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_INVENTARIO_AFILIADO" FunctionName="BMS_DATA_DENTModel.Store.F_INVENTARIO_AFILIADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_INVENTARIO_AFILIADO_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="COD_TIPO" ColumnName="COD_TIPO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_MOVIMIENTOS_POR_PRODUCTOS" FunctionName="BMS_DATA_DENTModel.Store.F_MOVIMIENTOS_POR_PRODUCTOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_MOVIMIENTOS_POR_PRODUCTOS_Result">
+                <ScalarProperty Name="FECHA_MOVI" ColumnName="FECHA_MOVI" />
+                <ScalarProperty Name="NEGOCIO" ColumnName="NEGOCIO" />
+                <ScalarProperty Name="AFILIADO" ColumnName="AFILIADO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+                <ScalarProperty Name="PRODUCTO" ColumnName="PRODUCTO" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_AFILIADOS_INSTALACIONES" FunctionName="BMS_DATA_DENTModel.Store.F_AFILIADOS_INSTALACIONES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_AFILIADOS_INSTALACIONES_Result">
+                <ScalarProperty Name="COMERCIO" ColumnName="COMERCIO" />
+                <ScalarProperty Name="AFILIADO" ColumnName="AFILIADO" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="EJECUTIVO" ColumnName="EJECUTIVO" />
+                <ScalarProperty Name="TIPO_SOF" ColumnName="TIPO_SOF" />
+                <ScalarProperty Name="TIPO_INDU" ColumnName="TIPO_INDU" />
+                <ScalarProperty Name="LICENCIA" ColumnName="LICENCIA" />
+                <ScalarProperty Name="FEC_INSTA" ColumnName="FEC_INSTA" />
+                <ScalarProperty Name="FEC_COMP" ColumnName="FEC_COMP" />
+                <ScalarProperty Name="PAGO_MEN" ColumnName="PAGO_MEN" />
+                <ScalarProperty Name="MOT_RETIRO" ColumnName="MOT_RETIRO" />
+                <ScalarProperty Name="FEC_RETIRO" ColumnName="FEC_RETIRO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SGA_CAMBIO_AFILIADO">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_CAMBIO_AFILIADO">
+              <MappingFragment StoreEntitySet="SGA_CAMBIO_AFILIADO">
+                <ScalarProperty Name="AFILIADO_INICIAL" ColumnName="AFILIADO_INICIAL" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="NUEVO_AFILIADO" ColumnName="NUEVO_AFILIADO" />
+                <ScalarProperty Name="ANTIGUO_AFILIADO" ColumnName="ANTIGUO_AFILIADO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_SGA_PRODUCTOS_POR_CLIENTE" FunctionName="BMS_DATA_DENTModel.Store.F_SGA_PRODUCTOS_POR_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_SGA_PRODUCTOS_POR_CLIENTE_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COD_CLIE" ColumnName="COD_CLIE" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="ID_SERIE" ColumnName="ID_SERIE" />
+                <ScalarProperty Name="N_SERIE" ColumnName="N_SERIE" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="F_SGA_AFILIADOS_SIN_MANTENIMIENTO" FunctionName="BMS_DATA_DENTModel.Store.F_SGA_AFILIADOS_SIN_MANTENIMIENTO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_SGA_AFILIADOS_SIN_MANTENIMIENTO_Result">
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="NEGOCIO" ColumnName="NEGOCIO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="CANTON" ColumnName="CANTON" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SGA_ESTADO_PRODUCTOS">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_ESTADO_PRODUCTOS">
+              <MappingFragment StoreEntitySet="SGA_ESTADO_PRODUCTOS">
+                <ScalarProperty Name="ACCION" ColumnName="ACCION" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+                <ScalarProperty Name="COD_PROD" ColumnName="COD_PROD" />
+                <ScalarProperty Name="SERIE_CONSECUTIVO" ColumnName="SERIE_CONSECUTIVO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="F_BUSQUEDA_AFILIADO" FunctionName="BMS_DATA_DENTModel.Store.F_BUSQUEDA_AFILIADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMS_DATA_DENTModel.F_BUSQUEDA_AFILIADO_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="N_AFILIADO" ColumnName="N_AFILIADO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION_1" ColumnName="DIRECCION_1" />
+                <ScalarProperty Name="DIRECCION_2" ColumnName="DIRECCION_2" />
+                <ScalarProperty Name="NOMBRE_NEGOCIO" ColumnName="NOMBRE_NEGOCIO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="N_COD_PROV" ColumnName="N_COD_PROV" />
+                <ScalarProperty Name="N_COD_CANT" ColumnName="N_COD_CANT" />
+                <ScalarProperty Name="N_COD_DIST" ColumnName="N_COD_DIST" />
+                <ScalarProperty Name="ACTUALIZADO" ColumnName="ACTUALIZADO" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="ACTIVO_V" ColumnName="ACTIVO_V" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SGA_EVIDENCIA_TICKET">
+            <EntityTypeMapping TypeName="BMS_DATA_DENTModel.SGA_EVIDENCIA_TICKET">
+              <MappingFragment StoreEntitySet="SGA_EVIDENCIA_TICKET">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="UPDATED" ColumnName="UPDATED" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
+                <ScalarProperty Name="MEMBERSHIP_ID" ColumnName="MEMBERSHIP_ID" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="PATH" ColumnName="PATH" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

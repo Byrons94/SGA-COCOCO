@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Atendidos";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+@model IEnumerable<Gestion_Activos.Models.Ticket>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-check-square-o"></i>
+                <h3 class="box-title">Atendidos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="no-padding">
+                    <table id="table1" class="table table-bordered table-hover " style="overflow-x:scroll;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.type)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.local_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.contact)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.membership_number)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.visit_date)
+                                </th>
+                                <th>Bitácora</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.local_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.contact)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.membership_number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.visit_date)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-block btn-info btn-sm" href='@Url.Action("Get_Log_Ticket", "Ticket", new { id_ticket = item.id })' target="_blank">
+                                            Ver
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if (FrontUser.Have_Permission(Permissions_Enum.Procesar_Tiquetes)) {
+                                        <button class="btn btn-block btn-warning btn-sm btn-cerrar"  id="@item.id" type="@item.type" data-toggle="modal" data-target="#modal_confirmacion" >
+                                            Cerrar
+                                        </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="id_cerrar" />
+                    <input type="hidden" id="type" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*modals*@
+<div class="modal fade" id="modal_confirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-send"></i>
+                    Cerrar tiquete
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <center><h3>¿Está seguro que desea cerrar el tiquete?</h3></center>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <h4>Comentario de cierre:</h4>
+                            <div class="form-group">
+                                <textarea class="form-control" name="c_cierre" style="resize:none" id="comentario" rows="3" maxlength="200" placeholder="Este comentario se guardará en bitacora"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-xs-9 col-xs-offset-2 row">
+                        <div class="col-xs-5">
+                            <button type="button" class="btn btn-block btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-close"></i>Cancelar</button>
+                        </div>
+                        <div class="col-xs-5">
+                            <button type="button" class="btn btn-block btn-success btn-lg" id="btn-confirmacion"><i class="fa  fa-check"></i>Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+@*end modals*@
+
+@Scripts.Render("~/bundle/scripts/dataTables")
+<script src="@Url.Content("~/Scripts/Views/Ticket/Index_Attended.js")" type="text/javascript"></script>
